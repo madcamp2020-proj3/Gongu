@@ -5,6 +5,7 @@ import Contract from './Contact';
 import NewConversationModal from './NewConversationModal'
 import NewContractModal from './NewContractModal'
 
+
 const CONVERSATION_KEY = "conversation";
 const CONTRACT_KEY = "contracts";
 
@@ -16,6 +17,7 @@ export default function Sidebar({ id }) {
     function closeModal() {
         setModalOpen(false);
     }
+
 
     return (
         <div style={{ width: '250px' }} className="d-flex flex-column">
@@ -29,6 +31,7 @@ export default function Sidebar({ id }) {
                     </Nav.Item>
                 </Nav>
                     <Tab.Content className="border-right overflow-auto flex-grow-1">
+
                         <Tab.Pane eventKey={CONVERSATION_KEY}>
                             <Conversation />
                         </Tab.Pane>
