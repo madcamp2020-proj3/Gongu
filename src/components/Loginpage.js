@@ -21,8 +21,12 @@ export default function Loginpage({ onIdSubmit }) {
                     <Form.Label> Enter Your Id</Form.Label>
                     <Form.Control type="text" ref={idRef} required></Form.Control>
                 </Form.Group>
+                <Form.Group>
+                    <Form.Label> Enter Your Password</Form.Label>
+                    <Form.Control type="password" ref={idRef} required></Form.Control>
+                </Form.Group>
                 <Button type="submit" className="mr-2">Login</Button>
-                <Button onClick={createNewId} variant="secondary">Create A New Id</Button>
+                <Button onClick={createNewId} variant="secondary">Create A New ID</Button>
             </Form>
         </Container>
     )
