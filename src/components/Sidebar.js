@@ -3,7 +3,7 @@ import { Tab, Nav, Button, Modal } from 'react-bootstrap';
 import Conversation from './Conversation';
 import Contract from './Contact';
 import NewConversationModal from './NewConversationModal'
-import NewContractModal from './NewContractModal'
+import NewContractModal from './NewContactModal'
 
 
 const CONVERSATION_KEY = "conversation";
@@ -30,28 +30,28 @@ export default function Sidebar({ id }) {
                         <Nav.Link eventKey={CONTRACT_KEY}>Contract</Nav.Link>
                     </Nav.Item>
                 </Nav>
-                    <Tab.Content className="border-right overflow-auto flex-grow-1">
+                <Tab.Content className="border-right overflow-auto flex-grow-1">
 
-                        <Tab.Pane eventKey={CONVERSATION_KEY}>
-                            <Conversation />
-                        </Tab.Pane>
-                        <Tab.Pane eventKey={CONTRACT_KEY}>
-                            <Contract />
-                        </Tab.Pane>
-                    </Tab.Content>
-            <div className="p-2 border-top border-right small">
-                Your Id: <span className="text-muted">{id}</span>
-            </div>
-            <Button onClick={() => setModalOpen(true)} className="rounded-0">
-                New {conversationOpen ? "Conversation" : "Contact"}
-            </Button>
+                    <Tab.Pane eventKey={CONVERSATION_KEY}>
+                        <Conversation />
+                    </Tab.Pane>
+                    <Tab.Pane eventKey={CONTRACT_KEY}>
+                        <Contract />
+                    </Tab.Pane>
+                </Tab.Content>
+                <div className="p-2 border-top border-right small">
+                    Your Id: <span className="text-muted">{id}</span>
+                </div>
+                <Button onClick={() => setModalOpen(true)} className="rounded-0">
+                    New {conversationOpen ? "Conversation" : "Contact"}
+                </Button>
             </Tab.Container>
 
             <Modal show={modalOpen} onHide={closeModal}>
                 {conversationOpen ?
-                    <NewConversationModal closeModal={closeModal}/> :
-                    <NewContractModal closeModal={closeModal}/>
-                }    
+                    <NewConversationModal closeModal={closeModal} /> :
+                    <NewContractModal closeModal={closeModal} />
+                }
             </Modal>
         </div>
     )
