@@ -22,11 +22,11 @@ export default function Sidebar({ id }) {
     return (
         <div style={{ width: '250px' }} className="d-flex flex-column">
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
-                <Nav variant="tabs" className="justify-content-center">
-                    <Nav.Item>
+                <Nav variant="tabs" className='text-center'>
+                    <Nav.Item className='w-1/2'>
                         <Nav.Link eventKey={CONVERSATION_KEY}>Conversation</Nav.Link>
                     </Nav.Item>
-                    <Nav.Item>
+                    <Nav.Item className='w-1/2'>
                         <Nav.Link eventKey={CONTRACT_KEY}>Contract</Nav.Link>
                     </Nav.Item>
                 </Nav>
