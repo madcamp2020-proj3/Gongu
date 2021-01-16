@@ -4,6 +4,7 @@ import JobBoardComponent from './JobBoardComponent';
 import { FaPlus } from 'react-icons/fa';
 import data from '../assets/data.json';
 import Modal from './CreateChatModal';
+import {Row} from 'react-bootstrap';
 
 export default function Domain() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -54,22 +55,25 @@ export default function Domain() {
     return (
         <>
             <header className="mb-8 p-20 bg-white">
-                <div className="text-6xl ml-16 text-blue-500 font-bold" style={{ color: "#0080ff" }}>Syno</div>
+                <Row>
+                <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
+                <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
+                </Row>
                 <button className="text-lg text-white font-bold float-right py-2 px-3 border border-solid border-indigo-500 rounded" style={{ backgroundColor: "#0080ff" }}>Logout</button>
             </header>
 
             <div className="container">
                 {filters.length > 0 && (
-                    <div className={`flex bg-white shdow-md -my-16 mb-20 mx-10 p-6 rounded z-10 relative`}>
+                    <div className={`flex bg-white shdow-md -my-16 mb-20 mx-10 p-6 rounded z-1 relative border border-indigo-200 items-center`}>
                         {filters.map((filter) => (
-                            <span className="cursor-pointer mr-4 mb-4 rounded font-bold text-indigo-500 bg-indigo-100 p-2 sm:mb-0"
+                            <span className="cursor-pointer mr-4 mb-2 mt-2 rounded font-bold text-indigo-500 bg-indigo-100 p-2 sm:mb-0"
                                 onClick={() => handleFilterClick(filter)}>
                                 <span
                                     className=''>x {filter}
                                 </span>
                             </span>
                         ))}
-                        <button onClick={clearFilters} className="font-bold text-gray-700 ml-auto border border-solid">Clear</button>
+                        <button onClick={clearFilters} className="font-bold text-gray-700 ml-auto ">Clear</button>
                     </div>
                 )}
 
@@ -89,8 +93,7 @@ export default function Domain() {
                 <div>
 
                     <Container>
-                        <button type="button" onClick={openModal} style={{ backgroundColor: "#0080ff" }} nClick={openModal} className="text-white rounded-full border border-gray-100 bg-blue-500 p-6 text-lg"> <FaPlus /></button>
-
+                        <button onClick={openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg"> <FaPlus /></button>
                         <Modal open={modalOpen} close={closeModal} header="새로운 채팅방 만들기" >
                         </Modal>
 

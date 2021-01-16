@@ -3,8 +3,24 @@ import "./modal.css";
 import { Button, ButtonGroup } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import { Row, Col } from 'react-bootstrap';
+import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
+import { stringify } from 'uuid';
+
+var NewChat = {
+    id: "",
+    title: "",
+    subtitle: "",
+    location: "",
+    members: 1,
+    personnel: 0,
+    logo: "",
+    category: [],
+    startDate: "",
+    endDate: ""
+}
+
 
 const Modal = (props) => {
     const { open, close, header } = props;
@@ -13,7 +29,6 @@ const Modal = (props) => {
     const [location, setLocation] = useState("");
     const [members, setMembers] = useState("");
     const [image, setImage] = useState(null);
-    const [sdate, setSdate] = useState(null);
     const [cSelected, setCSelected] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -56,11 +71,6 @@ const Modal = (props) => {
                                 <label>소제목:</label>
                                 <input type="text" class="form-control" name="subtitle" value={subtitle} onChange={({ target: { value } }) => setSubtitle(value)}></input>
                             </div>
-
-                            {/* <div class="form-group">
-            <label>날짜:</label>
-              <input type="datepicker" class="form-control" name="sdate" value={sdate} onChange={({target: {value}}) => setSdate(value)}></input>
-            </div> */}
 
                             <div class="form-group">
 
@@ -114,8 +124,23 @@ const Modal = (props) => {
                     </main>
 
                     <footer>
-                        <button className="btn btn-primary p-2 mx-3"
-                            onClick={() => localStorage.setItem(title, [subtitle, location, members, sdate, cSelected])}> Save </button>
+                        <button type="submit" className="btn btn-primary px-3"
+                            // onClick={() => localStorage.setItem(title, [subtitle, location, members, startDate, endDate, cSelected])}> Save </button>
+                            onClick={() => 
+                            NewChat.id = Date.now(), 
+                            NewChat.title = title,
+                            NewChat.subtitle = subtitle,
+                            NewChat.location = location,
+                            NewChat.personnel = members,
+                            NewChat.logo = image,
+                            NewChat.category = cSelected,
+                            NewChat.startDate = startDate,
+                            NewChat.endDate = endDate,
+                            localStorage.setItem("newchat", [NewChat.id, NewChat.title, NewChat.endDate]),
+                            console.log(Date.now())
+                        
+                           }> 
+                            Save </button>
                     </footer>
 
                 </section>
