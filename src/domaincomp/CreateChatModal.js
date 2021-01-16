@@ -57,8 +57,6 @@ const Modal = (props) => {
         NewChat.category = cSelected;
         NewChat.startDate = moment(startDate).format('YYYY-MM-DD');
         NewChat.endDate = moment(endDate).format('YYYY-MM-DD');
-
-        localStorage.setItem(title, [NewChat.id, NewChat.title, NewChat.endDate]);
         console.log(Date.now());
 
         fetch("http://192.249.18.236:3001/makeroom", {
