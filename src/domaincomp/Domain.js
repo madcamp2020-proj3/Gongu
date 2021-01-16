@@ -60,16 +60,16 @@ export default function Domain() {
 
             <div className="container">
                 {filters.length > 0 && (
-                    <div className={`flex bg-white shdow-md -my-16 mb-20 mx-10 p-6 rounded z-10 relative`}>
+                    <div className={`flex bg-white shdow-md -my-16 mb-20 mx-10 p-6 rounded z-1 relative border border-indigo-200 items-center`}>
                         {filters.map((filter) => (
-                            <span className="cursor-pointer mr-4 mb-4 rounded font-bold text-indigo-500 bg-indigo-100 p-2 sm:mb-0"
+                            <span className="cursor-pointer mr-4 mb-2 mt-2 rounded font-bold text-indigo-500 bg-indigo-100 p-2 sm:mb-0"
                                 onClick={() => handleFilterClick(filter)}>
                                 <span
                                     className=''>x {filter}
                                 </span>
                             </span>
                         ))}
-                        <button onClick={clearFilters} className="font-bold text-gray-700 ml-auto border border-solid">Clear</button>
+                        <button onClick={clearFilters} className="font-bold text-gray-700 ml-auto ">Clear</button>
                     </div>
                 )}
 

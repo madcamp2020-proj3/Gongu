@@ -27,7 +27,8 @@ function App() {
   return (
     <>
       {/* {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : dashboard(id)} */}
-      {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : <Domain />}
+      {/* {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : <Domain />} */}
+      <Domain />
 
     </>
   );

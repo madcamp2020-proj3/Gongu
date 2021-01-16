@@ -13,7 +13,6 @@ const Modal = (props) => {
     const [location, setLocation] = useState("");
     const [members, setMembers] = useState("");
     const [image, setImage] = useState(null);
-    const [sdate, setSdate] = useState(null);
     const [cSelected, setCSelected] = useState([]);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -56,11 +55,6 @@ const Modal = (props) => {
                                 <label>소제목:</label>
                                 <input type="text" class="form-control" name="subtitle" value={subtitle} onChange={({ target: { value } }) => setSubtitle(value)}></input>
                             </div>
-
-                            {/* <div class="form-group">
-            <label>날짜:</label>
-              <input type="datepicker" class="form-control" name="sdate" value={sdate} onChange={({target: {value}}) => setSdate(value)}></input>
-            </div> */}
 
                             <div class="form-group">
 
@@ -115,7 +109,7 @@ const Modal = (props) => {
 
                     <footer>
                         <button className="btn btn-primary p-2 mx-3"
-                            onClick={() => localStorage.setItem(title, [subtitle, location, members, sdate, cSelected])}> Save </button>
+                            onClick={() => localStorage.setItem(title, [subtitle, location, members, startDate, endDate, cSelected])}> Save </button>
                     </footer>
 
                 </section>
