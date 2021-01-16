@@ -6,6 +6,8 @@ import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import jsonfile from '../assets/data.json';
 import 'react-datepicker/dist/react-datepicker.css';
 import { parse } from 'uuid';
+import ReactDatePicker from 'react-datepicker';
+import moment from 'moment';
 
 var NewChat = {
     id: "",
@@ -20,7 +22,9 @@ var NewChat = {
     endDate: ""
 }
 
+
 const Modal = (props) => {
+    var date = moment(new Date()).format('YYYY-MM-DD');
     
     const { open, close, header } = props;
     const [title, setTitle] = useState("");
@@ -29,8 +33,8 @@ const Modal = (props) => {
     const [members, setMembers] = useState("");
     const [image, setImage] = useState(null);
     const [cSelected, setCSelected] = useState([]);
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
 
     const onCheckboxBtnClick = (selected) => {
         const index = cSelected.indexOf(selected);
@@ -42,10 +46,6 @@ const Modal = (props) => {
         setCSelected([...cSelected]);
     }
 
-    // function handleClick(e){
-    //     e.stopPropagation();
-    // }
-
     function clickhandler(){
         NewChat.id = Date.now();
         NewChat.title = title;
@@ -54,13 +54,12 @@ const Modal = (props) => {
         NewChat.personnel = members;
         NewChat.logo = image;
         NewChat.category = cSelected;
-        NewChat.startDate = startDate;
-        NewChat.endDate = endDate;
-
+        NewChat.startDate = moment(startDate).format('YYYY-MM-DD');
+        NewChat.endDate = moment(endDate).format('YYYY-MM-DD');
+        
         localStorage.setItem(title, [NewChat.id, NewChat.title, NewChat.endDate]);
         console.log(Date.now());
-        var jsNewChat = JSON.stringify(NewChat);
-        
+    
     }
 
     return (
@@ -109,7 +108,7 @@ const Modal = (props) => {
 
                                     <Col>
                                         <label>마감 날짜:</label>
-                                        <DatePicker
+                                        <ReactDatePicker
                                             selected={endDate}
                                             onChange={date => setEndDate(date)}
                                             selectsEnd
@@ -117,6 +116,8 @@ const Modal = (props) => {
                                             endDate={endDate}
                                             minDate={startDate}
                                             inline="true"
+                                            format="yyyy-mm-dd"
+                                            
                                         /></Col>
                                 </Row>
                             </div>
