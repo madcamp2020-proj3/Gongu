@@ -1,7 +1,7 @@
 import React from 'react';
 
 const JobBoardComponent = ({ job:
-    { logo, company, isNew, position, postedAt, subtitle, location, category, members },
+    { logo, isNew, position, startDate, endDate, subtitle, location, category, members, personnel },
     handletagClick,
 }) => {
     const tags = [];
@@ -40,9 +40,13 @@ const JobBoardComponent = ({ job:
             </div>
 
             <div className="flex flex-col justify-between ml-auto push">
-                <h2 className="text-gray-500 text-lg text-right mr-4">
-                    {postedAt}
+                <h2 className="text-lg text-right mr-4">
+                    <span className="text-gray-500">{startDate}</span>
+                    <span className="text-gray-500"> ~ </span>
+                    <span className="text-gray-500">{endDate}</span>
                     <span className="text-gray-700 ml-4">{members}</span>
+                    <span className="text-gray-700 ">/</span>
+                    <span className="text-gray-700 ">{personnel}</span>
                 </h2>
 
                 <h1 className="flex flex-wrap items-end mt-4 mr-3 mx-0 pt-4 border-t border-gray-500 border-solid sm:ml-auto sm:border-0 sm:pt-0 sm:mt-0 sm:justify-center">

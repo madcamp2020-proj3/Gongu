@@ -4,6 +4,7 @@ import JobBoardComponent from './JobBoardComponent';
 import { FaPlus } from 'react-icons/fa';
 import data from '../assets/data.json';
 import Modal from './CreateChatModal';
+import {Row} from 'react-bootstrap';
 
 export default function Domain() {
     const [modalOpen, setModalOpen] = useState(false);
@@ -54,7 +55,10 @@ export default function Domain() {
     return (
         <>
             <header className="mb-8 p-20 bg-white">
-                <div className="text-6xl ml-16 text-blue-500 font-bold" style={{ color: "#0080ff" }}>Syno</div>
+                <Row>
+                <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
+                <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
+                </Row>
                 <button className="text-lg text-white font-bold float-right py-2 px-3 border border-solid border-indigo-500 rounded" style={{ backgroundColor: "#0080ff" }}>Logout</button>
             </header>
 
@@ -89,8 +93,7 @@ export default function Domain() {
                 <div>
 
                     <Container>
-                        <button type="button" onClick={openModal} style={{ backgroundColor: "#0080ff" }} nClick={openModal} className="text-white rounded-full border border-gray-100 bg-blue-500 p-6 text-lg"> <FaPlus /></button>
-
+                        <button onClick={openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg"> <FaPlus /></button>
                         <Modal open={modalOpen} close={closeModal} header="새로운 채팅방 만들기" >
                         </Modal>
 
