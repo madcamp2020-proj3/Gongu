@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import "./modal.css";
-import { Button, ButtonGroup } from 'reactstrap';
+//import { Button, ButtonGroup } from 'reactstrap';
 import DatePicker from 'react-datepicker';
-import { Row, Col } from 'react-bootstrap';
-import moment from 'moment';
-
+import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
+import jsonfile from '../assets/data.json';
 import 'react-datepicker/dist/react-datepicker.css';
-import { stringify } from 'uuid';
+import { parse } from 'uuid';
 
 var NewChat = {
     id: "",
@@ -21,8 +20,8 @@ var NewChat = {
     endDate: ""
 }
 
-
 const Modal = (props) => {
+    
     const { open, close, header } = props;
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
@@ -41,6 +40,27 @@ const Modal = (props) => {
             cSelected.splice(index, 1);
         }
         setCSelected([...cSelected]);
+    }
+
+    // function handleClick(e){
+    //     e.stopPropagation();
+    // }
+
+    function clickhandler(){
+        NewChat.id = Date.now();
+        NewChat.title = title;
+        NewChat.subtitle = subtitle;
+        NewChat.location = location;
+        NewChat.personnel = members;
+        NewChat.logo = image;
+        NewChat.category = cSelected;
+        NewChat.startDate = startDate;
+        NewChat.endDate = endDate;
+
+        localStorage.setItem(title, [NewChat.id, NewChat.title, NewChat.endDate]);
+        console.log(Date.now());
+        var jsNewChat = JSON.stringify(NewChat);
+        
     }
 
     return (
@@ -125,21 +145,7 @@ const Modal = (props) => {
 
                     <footer>
                         <button type="submit" className="btn btn-primary px-3"
-                            // onClick={() => localStorage.setItem(title, [subtitle, location, members, startDate, endDate, cSelected])}> Save </button>
-                            onClick={() => 
-                            NewChat.id = Date.now(), 
-                            NewChat.title = title,
-                            NewChat.subtitle = subtitle,
-                            NewChat.location = location,
-                            NewChat.personnel = members,
-                            NewChat.logo = image,
-                            NewChat.category = cSelected,
-                            NewChat.startDate = startDate,
-                            NewChat.endDate = endDate,
-                            localStorage.setItem("newchat", [NewChat.id, NewChat.title, NewChat.endDate]),
-                            console.log(Date.now())
-                        
-                           }> 
+                            onClick={clickhandler}> 
                             Save </button>
                     </footer>
 

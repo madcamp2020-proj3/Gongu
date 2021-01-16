@@ -15,6 +15,11 @@ export default function Domain() {
         setModalOpen(false);
     }
 
+    function handleClick(e){
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
     const [jobs, setJobs] = useState([]);
     const [filters, setFilters] = useState([]);
 
@@ -93,7 +98,7 @@ export default function Domain() {
                 <div>
 
                     <Container>
-                        <button onClick={openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg"> <FaPlus /></button>
+                        <button onClick={() => handleClick, openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg"> <FaPlus /></button>
                         <Modal open={modalOpen} close={closeModal} header="새로운 채팅방 만들기" >
                         </Modal>
 
