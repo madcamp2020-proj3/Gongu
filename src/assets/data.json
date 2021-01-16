@@ -1,0 +1,163 @@
+[
+    {
+        "id": 1,
+        "location": "지역1",
+        "logo": "/images/photosnap.svg",
+        "isNew": true,
+        "featured": false,
+        "position": "우리 같이 공구해요~",
+        "postedAt": "1d ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "농산물",
+            "대량구매",
+            "반찬",
+            "상시모집"
+        ]
+    },
+    {
+        "id": 2,
+        "location": "지역2",
+        "logo": "/images/manage.svg",
+        "isNew": true,
+        "featured": false,
+        "position": "귤 공구해요",
+        "postedAt": "1d ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "과일",
+            "농산물"
+        ]
+    },
+    {
+        "id": 3,
+        "location": "지역3",
+        "logo": "/images/account.svg",
+        "isNew": true,
+        "featured": false,
+        "position": "쿠캣 공구 모집합니다",
+        "postedAt": "2d ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "쿠캣",
+            "반찬",
+            "온라인공구",
+            "밀키트"
+        ]
+    },
+    {
+        "id": 4,
+        "location": "지역4",
+        "logo": "/images/myhome.svg",
+        "isNew": false,
+        "featured": false,
+        "position": "카이스트 기숙사 과일 공구",
+        "postedAt": "5d ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "기숙사",
+            "카이스트",
+            "과일",
+            "대학생"
+        ]
+    },
+    {
+        "id": 5,
+        "location": "지역5",
+        "logo": "/images/loop-studios.svg",
+        "isNew": false,
+        "featured": false,
+        "position": "우리 같이 공구해요~",
+        "postedAt": "1w ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "해외직구",
+            "가전제품"
+        ]
+    },
+    {
+        "id": 6,
+        "location": "지역6",
+        "logo": "/images/faceit.svg",
+        "isNew": false,
+        "featured": false,
+        "position": "이사 가는데 미니 냉장고 나눔합니다",
+        "postedAt": "2w ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "나눔",
+            "냉장고",
+            "원룸"
+        ]
+    },
+    {
+        "id": 7,
+        "location": "지역7",
+        "logo": "/images/shortly.svg",
+        "isNew": false,
+        "featured": false,
+        "position": "쿠캣 공구 모집합니다",
+        "postedAt": "2w ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "카테고리1",
+            "카테고리2",
+            "쿠캣"
+        ]
+    },
+    {
+        "id": 8,
+        "location": "지역8",
+        "logo": "/images/insure.svg",
+        "isNew": false,
+        "featured": false,
+        "position": "카이스트 기숙사 과일 공구",
+        "postedAt": "2w ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "과일",
+            "대량구매",
+            "대학생"
+        ]
+    },
+    {
+        "id": 9,
+        "location": "지역9",
+        "logo": "/images/eyecam-co.svg",
+        "isNew": false,
+        "featured": false,
+        "position": "쿠캣 공구 모집합니다",
+        "postedAt": "3w ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "밀키트",
+            "카테고리1",
+            "반찬"
+        ]
+    },
+    {
+        "id": 10,
+        "location": "지역10",
+        "logo": "/images/the-air-filter-company.svg",
+        "isNew": false,
+        "featured": false,
+        "position": "쿠캣 공구 모집합니다",
+        "postedAt": "1mo ago",
+        "subtitle": "상세설명 칸입니다. 이곳에는 상세 설명을 적으면 됩니다.",
+        "members": "3/5",
+        "category": [
+            "카테고리1",
+            "카테고리2",
+            "상시모집"
+        ]
+    }
+]

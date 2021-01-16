@@ -5,6 +5,7 @@ import { SocketProvider } from '../contexts/SocketProvider';
 import useLocalStorage from '../hooks/useLocalStorage';
 import Dashboard from './Dashboard';
 import Loginpage from './Loginpage';
+import Domain from '../domaincomp/Domain';
 
 function App() {
   // const [id, setId] = useLocalStorage();
@@ -25,7 +26,9 @@ function App() {
 
   return (
     <>
-      {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : dashboard(id)}
+      {/* {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : dashboard(id)} */}
+      {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : <Domain />}
+
     </>
   );
 }
