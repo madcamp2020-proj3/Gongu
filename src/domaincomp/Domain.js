@@ -69,7 +69,7 @@ export default function Domain({ setLogin }) {
 
     return (
         <>
-            <header className="mb-8 p-20 bg-white">
+            <header className="mb-8 p-16 bg-white">
                 <Row>
                     <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
                     <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
@@ -108,7 +108,7 @@ export default function Domain({ setLogin }) {
                 <div>
 
                     <Container>
-                        <button onClick={() => handleClick, openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg"> <FaPlus /></button>
+                        <button onClick={() => handleClick, openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg shadow-lg"> <FaPlus /></button>
                         <Modal open={modalOpen} close={closeModal} header="새로운 채팅방 만들기" >
                         </Modal>
 

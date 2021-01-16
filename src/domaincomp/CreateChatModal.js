@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import "./modal.css";
-//import { Button, ButtonGroup } from 'reactstrap';
 import DatePicker from 'react-datepicker';
 import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
-import jsonfile from '../assets/data.json';
 import 'react-datepicker/dist/react-datepicker.css';
-import { parse } from 'uuid';
 import ReactDatePicker from 'react-datepicker';
 import moment from 'moment';
+import Select from 'react-bootstrap-select';
 
 var NewChat = {
     id: "",
@@ -25,6 +23,7 @@ var NewChat = {
 
 const Modal = (props) => {
     var date = moment(new Date()).format('YYYY-MM-DD');
+    
 
     const { open, close, header } = props;
     const [title, setTitle] = useState("");
@@ -58,6 +57,7 @@ const Modal = (props) => {
         NewChat.startDate = moment(startDate).format('YYYY-MM-DD');
         NewChat.endDate = moment(endDate).format('YYYY-MM-DD');
         console.log(Date.now());
+        
 
         fetch("http://192.249.18.236:3001/makeroom", {
             method: 'POST',
@@ -67,6 +67,9 @@ const Modal = (props) => {
             .then(res => {
                 console.log("방이 만들어졌습니다.");
             });
+
+        
+        close();
     }
 
     return (
@@ -131,21 +134,41 @@ const Modal = (props) => {
 
                             <div class="form-group">
                                 <label>지역:</label>
-                                <input type="text" class="form-control" name="location" value={location} onChange={({ target: { value } }) => setLocation(value)}></input>
+                                <Row>
+                                    <Col>
+                                        
+                                    </Col>
+                                    <Col>
+                                        
+                                    </Col>
+                                </Row>
+                                {/* <input type="text" class="form-control" name="location" value={location} onChange={({ target: { value } }) => setLocation(value)}></input> */}
                             </div>
 
                             <div class="form-group">
                                 <label >최대 인원수:</label>
-                                <input type="number" class="form-control" name="members" value={members} onChange={({ target: { value } }) => setMembers(value)}></input>
+                                <input type="number" min="0" class="form-control" name="members" value={members} onChange={({ target: { value } }) => setMembers(value)}></input>
                             </div>
 
+                            <label >카테고리 선택:</label>
                             <div class="form-group">
-                                <label >카테고리 선택:</label>
-                                <ButtonGroup class="modal-dialog">
-                                    <Button color="primary" onClick={() => onCheckboxBtnClick(1)} active={cSelected.includes(1)}>One</Button>
-                                    <Button color="primary" onClick={() => onCheckboxBtnClick(2)} active={cSelected.includes(2)}>Two</Button>
-                                    <Button color="primary" onClick={() => onCheckboxBtnClick(3)} active={cSelected.includes(3)}>Three</Button>
-                                </ButtonGroup>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("가공식품")} active={cSelected.includes("가공식품")}># 가공식품</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("농산물")} active={cSelected.includes("농산물")}># 농산물</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("과일")} active={cSelected.includes("과일")}># 과일</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("유아동")} active={cSelected.includes("유아동")}># 유아동</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("스포츠/레저")} active={cSelected.includes("스포츠/레저")}># 스포츠/레저</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("여성패션/잡화")} active={cSelected.includes("여성패션/잡화")}># 여성패션/잡화</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("남성패션/잡화")} active={cSelected.includes("남성패션/잡화")}># 남성패션/잡화</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("게임/취미")} active={cSelected.includes("게임/취미")}># 게임/취미</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("뷰티/미용")} active={cSelected.includes("뷰티/미용")}># 뷰티/미용</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("도서/티켓/음반")} active={cSelected.includes("도서/티켓/음반")}># 도서/티켓/음반</Button>
+                                </div><div class="form-group">
+                                <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("상시모집")} active={cSelected.includes("상시모집")}># 상시모집</Button>
+                                <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("대량구매")} active={cSelected.includes("대량구매")}># 대량구매</Button>
+                                <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("자취")} active={cSelected.includes("자취")}># 자취</Button>
+                                <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("해외직구")} active={cSelected.includes("해외직구")}># 해외직구</Button>
+                                <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("나눔")} active={cSelected.includes("나눔")}># 나눔</Button>
+                                <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("기타")} active={cSelected.includes("기타")}># 기타</Button>
                             </div>
 
                         </form>

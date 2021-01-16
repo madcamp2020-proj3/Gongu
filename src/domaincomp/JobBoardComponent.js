@@ -49,7 +49,7 @@ const JobBoardComponent = ({ job:
                     <span className="text-gray-700 ">{personnel}</span>
                 </h2>
 
-                <h1 className="flex flex-wrap items-end mt-4 mr-3 mx-0 pt-4 border-t border-gray-500 border-solid sm:ml-auto sm:border-0 sm:pt-0 sm:mt-0 sm:justify-center">
+                <h1 className="flex flex-wrap ml-auto push items-end mt-4 mr-4 mx-0 pt-4 border-t border-gray-500 border-solid sm:ml-auto sm:border-0 sm:pt-0 sm:mt-0 sm:justify-center">
                     {tags ? tags.map((tag) => (
                         <span
                             onClick={() => handletagClick(tag)}

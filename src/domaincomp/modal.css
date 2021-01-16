@@ -25,17 +25,18 @@
   overflow: scroll;
 }
 .modal > section > header {
-  position: relative;
+  position: unset;
   padding: 16px 64px 16px 16px;
-  background-color: #f1f1f1;
+  width: initial;
+  background-color: #f4f5f9;
   font-weight: 700;
 }
 .modal > section > header button {
   position: absolute;
   top: 15px;
-  right: 15px;
+  right: 30px;
   width: 30px;
-  font-size: 21px;
+  font-size: 50px;
   font-weight: 700;
   text-align: center;
   color: #999;
