@@ -3,13 +3,14 @@ import { ContactsProvider } from '../contexts/ContactsProvider';
 import { ConversationsProvider } from '../contexts/ConversationsProvider';
 import { SocketProvider } from '../contexts/SocketProvider';
 import useLocalStorage from '../hooks/useLocalStorage';
+import useLoginStorage from '../hooks/useLoginStorage';
 import Dashboard from './Dashboard';
 import Loginpage from './Loginpage';
 import Domain from '../domaincomp/Domain';
 
 function App() {
-  // const [id, setId] = useLocalStorage();
-  const [login, setLogin] = useState(true);
+  const [login, setLogin] = useLoginStorage();
+  // const [login, setLogin] = useState(true);
   const [id, setId] = useState();
 
   const dashboard = (id) => {
@@ -27,9 +28,7 @@ function App() {
   return (
     <>
       {/* {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : dashboard(id)} */}
-      {/* {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : <Domain />} */}
-      <Domain />
-
+      {!login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : <Domain />}
     </>
   );
 }
