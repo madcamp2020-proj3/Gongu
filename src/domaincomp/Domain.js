@@ -15,7 +15,7 @@ export default function Domain({ setLogin }) {
         setModalOpen(false);
     }
 
-    function handleClick(e){
+    function handleClick(e) {
         e.preventDefault();
         e.stopPropagation();
     }
@@ -23,7 +23,11 @@ export default function Domain({ setLogin }) {
     const [jobs, setJobs] = useState([]);
     const [filters, setFilters] = useState([]);
 
-    useEffect(() => setJobs(data), []);
+    useEffect(() =>
+        fetch("http://192.249.18.236:3001/makeroom")
+            .then(res => res.json())
+            .then(result => setJobs(result))
+        , []);
 
     const filterFunc = ({ category }) => {
         if (filters.length === 0) {

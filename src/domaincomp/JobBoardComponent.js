@@ -1,7 +1,7 @@
 import React from 'react';
 
 const JobBoardComponent = ({ job:
-    { logo, isNew, position, startDate, endDate, subtitle, location, category, members, personnel },
+    { logo, isNew, title, startDate, endDate, subtitle, location, category, members, personnel },
     handletagClick,
 }) => {
     const tags = [];
@@ -15,7 +15,7 @@ const JobBoardComponent = ({ job:
             <div className="flex flex-col justify-between">
                 <img
                     className="-mt-16 mb-4 w-20 h-20 sm:h-24 sm:w-24 sm:my-0"
-                    src={logo}
+                    src={logo == null ? "/images/shortly.svg" : logo}
                     alt=""
                 />
                 <button onClick={() => { console.log("Click") }}
@@ -33,7 +33,7 @@ const JobBoardComponent = ({ job:
                         </span>
                     )}
                 </h3>
-                <h2 className="font-bold text-xl my-2">{position}</h2>
+                <h2 className="font-bold text-xl my-2">{title}</h2>
                 <p className="text-gray-700 my-2">
                     {subtitle}
                 </p>

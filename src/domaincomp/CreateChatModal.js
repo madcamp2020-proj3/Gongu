@@ -25,7 +25,7 @@ var NewChat = {
 
 const Modal = (props) => {
     var date = moment(new Date()).format('YYYY-MM-DD');
-    
+
     const { open, close, header } = props;
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
@@ -46,7 +46,8 @@ const Modal = (props) => {
         setCSelected([...cSelected]);
     }
 
-    function clickhandler(){
+    function clickhandler() {
+        console.log("이게 된다.");
         NewChat.id = Date.now();
         NewChat.title = title;
         NewChat.subtitle = subtitle;
@@ -56,10 +57,18 @@ const Modal = (props) => {
         NewChat.category = cSelected;
         NewChat.startDate = moment(startDate).format('YYYY-MM-DD');
         NewChat.endDate = moment(endDate).format('YYYY-MM-DD');
-        
+
         localStorage.setItem(title, [NewChat.id, NewChat.title, NewChat.endDate]);
         console.log(Date.now());
-    
+
+        fetch("http://192.249.18.236:3001/makeroom", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(NewChat)
+        })
+            .then(res => {
+                console.log("방이 만들어졌습니다.");
+            });
     }
 
     return (
@@ -117,7 +126,7 @@ const Modal = (props) => {
                                             minDate={startDate}
                                             inline="true"
                                             format="yyyy-mm-dd"
-                                            
+
                                         /></Col>
                                 </Row>
                             </div>
@@ -146,7 +155,7 @@ const Modal = (props) => {
 
                     <footer>
                         <button type="submit" className="btn btn-primary px-3"
-                            onClick={clickhandler}> 
+                            onClick={clickhandler}>
                             Save </button>
                     </footer>
 
