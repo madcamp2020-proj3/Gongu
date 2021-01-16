@@ -41,7 +41,8 @@ export default function Loginpage({ onIdSubmit, onLoginAdmit }) {
 
     function admitLogin() {
         onIdSubmit(idRef.current.value);
-        onLoginAdmit(false);
+        // save in local storage
+        onLoginAdmit(true);
     }
 
     function closeSignupModal() {
