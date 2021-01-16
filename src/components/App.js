@@ -10,7 +10,6 @@ import Domain from '../domaincomp/Domain';
 
 function App() {
   const [login, setLogin] = useLoginStorage();
-  // const [login, setLogin] = useState(true);
   const [id, setId] = useState();
 
   const dashboard = (id) => {
