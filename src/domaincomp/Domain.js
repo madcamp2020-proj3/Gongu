@@ -33,7 +33,7 @@ export default function Domain({ setLogin }) {
         fetch("http://192.249.18.236:3001/makeroom")
             .then(res => res.json())
             .then(result => setJobs(result))
-        , [openModal]);
+        , []);
 
     const filterFunc = ({ category }) => {
         if (filters.length === 0) {
