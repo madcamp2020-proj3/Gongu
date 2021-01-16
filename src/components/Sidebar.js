@@ -30,7 +30,7 @@ export default function Sidebar({ id }) {
                         <Nav.Link eventKey={CONTRACT_KEY}>Contract</Nav.Link>
                     </Nav.Item>
                 </Nav>
-                <Tab.Content className="border-right overflow-auto flex-grow-1">
+                <Tab.Content className="border-right overflow-auto flex-grow-1 bg-white">
                     <Tab.Pane eventKey={CONVERSATION_KEY}>
                         <Conversation />
                     </Tab.Pane>
@@ -38,7 +38,7 @@ export default function Sidebar({ id }) {
                         <Contract />
                     </Tab.Pane>
                 </Tab.Content>
-                <div className="p-2 border-top border-right small">
+                <div className="p-2 border-top border-right small bg-white">
                     Your Id: <span className="text-muted">{id}</span>
                 </div>
                 <Button onClick={() => setModalOpen(true)} className="rounded-0">

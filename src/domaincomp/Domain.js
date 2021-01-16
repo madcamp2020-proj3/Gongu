@@ -5,9 +5,11 @@ import { FaPlus } from 'react-icons/fa';
 import data from '../assets/data.json';
 import Modal from './CreateChatModal';
 import { Row } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
 export default function Domain({ setLogin }) {
     const [modalOpen, setModalOpen] = useState(false);
+    const history = useHistory();
     const openModal = () => {
         setModalOpen(true);
     }
@@ -63,8 +65,11 @@ export default function Domain({ setLogin }) {
 
     function handleClick(e) {
         e.preventDefault();
-        // localStorage.clear();
         setLogin(false);
+    }
+
+    function goToRoom() {
+        history.push('/chatroom');
     }
 
     return (
@@ -100,7 +105,8 @@ export default function Domain({ setLogin }) {
                                 <JobBoardComponent
                                     job={job}
                                     key={job.id}
-                                    handletagClick={handletagClick} />
+                                    handletagClick={handletagClick}
+                                    goToRoom={goToRoom} />
                             ))
                         )
                 }

@@ -2,9 +2,15 @@ import React from 'react';
 
 const JobBoardComponent = ({ job:
     { logo, isNew, title, startDate, endDate, subtitle, location, category, members, personnel },
-    handletagClick,
+    handletagClick, goToRoom
 }) => {
     const tags = [];
+
+    function handleEntrance(e) {
+        e.preventDefault();
+        console.log("클릭하였습니다.");
+        goToRoom();
+    }
 
     if (category) {
         tags.push(...category);
@@ -18,7 +24,7 @@ const JobBoardComponent = ({ job:
                     src={logo == null ? "/images/shortly.svg" : logo}
                     alt=""
                 />
-                <button onClick={() => { console.log("Click") }}
+                <button onClick={handleEntrance}
                     className="bg-indigo-100 text-indigo-600 px-2 py-1 mx-1 font-bold text-lg justify-center col-centered border rounded border-solid border-indigo-700">
                     입장
             </button>
