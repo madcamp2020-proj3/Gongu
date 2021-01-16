@@ -4,9 +4,9 @@ import JobBoardComponent from './JobBoardComponent';
 import { FaPlus } from 'react-icons/fa';
 import data from '../assets/data.json';
 import Modal from './CreateChatModal';
-import {Row} from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
-export default function Domain() {
+export default function Domain({ setLogin }) {
     const [modalOpen, setModalOpen] = useState(false);
     const openModal = () => {
         setModalOpen(true);
@@ -52,14 +52,20 @@ export default function Domain() {
 
     const filteredJobs = jobs.filter(filterFunc);
 
+    function handleClick(e) {
+        e.preventDefault();
+        // localStorage.clear();
+        setLogin(false);
+    }
+
     return (
         <>
             <header className="mb-8 p-20 bg-white">
                 <Row>
-                <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
-                <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
+                    <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
+                    <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
                 </Row>
-                <button className="text-lg text-white font-bold float-right py-2 px-3 border border-solid border-indigo-500 rounded" style={{ backgroundColor: "#0080ff" }}>Logout</button>
+                <button onClick={handleClick} className="text-lg text-white font-bold float-right py-2 px-3 border border-solid border-indigo-500 rounded" style={{ backgroundColor: "#0080ff" }}>Logout</button>
             </header>
 
             <div className="container">
