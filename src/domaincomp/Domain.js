@@ -9,6 +9,10 @@ import { useHistory } from 'react-router-dom';
 
 export default function Domain({ setLogin }) {
     const [modalOpen, setModalOpen] = useState(false);
+    const modalClose = () =>{
+        setModalOpen(false);
+    } 
+
     const history = useHistory();
     const openModal = () => {
         setModalOpen(true);
@@ -29,7 +33,7 @@ export default function Domain({ setLogin }) {
         fetch("http://192.249.18.236:3001/makeroom")
             .then(res => res.json())
             .then(result => setJobs(result))
-        , []);
+        , [openModal]);
 
     const filterFunc = ({ category }) => {
         if (filters.length === 0) {
@@ -115,7 +119,7 @@ export default function Domain({ setLogin }) {
 
                     <Container>
                         <button onClick={() => handleClick, openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg shadow-lg"> <FaPlus /></button>
-                        <Modal open={modalOpen} close={closeModal} header="새로운 채팅방 만들기" >
+                        <Modal open={modalOpen} close={closeModal} func={modalClose}  header="새로운 채팅방 만들기" >
                         </Modal>
 
                     </Container>

@@ -5,7 +5,6 @@ import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import ReactDatePicker from 'react-datepicker';
 import moment from 'moment';
-import Select from 'react-bootstrap-select';
 
 var NewChat = {
     id: "",
@@ -24,8 +23,7 @@ var NewChat = {
 const Modal = (props) => {
     var date = moment(new Date()).format('YYYY-MM-DD');
     
-
-    const { open, close, header } = props;
+    const { open, close, header, func } = props;
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
     const [location, setLocation] = useState("");
@@ -66,10 +64,11 @@ const Modal = (props) => {
         })
             .then(res => {
                 console.log("방이 만들어졌습니다.");
+                func();
             });
 
         
-        close();
+        
     }
 
     return (
@@ -134,14 +133,6 @@ const Modal = (props) => {
 
                             <div class="form-group">
                                 <label>지역:</label>
-                                <Row>
-                                    <Col>
-                                        
-                                    </Col>
-                                    <Col>
-                                        
-                                    </Col>
-                                </Row>
                                 {/* <input type="text" class="form-control" name="location" value={location} onChange={({ target: { value } }) => setLocation(value)}></input> */}
                             </div>
 
