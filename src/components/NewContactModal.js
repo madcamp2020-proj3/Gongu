@@ -9,7 +9,6 @@ export default function NewcontactModal({ closeModal }) {
 
     function handleSubmit(e) {
         e.preventDefault();
-
         createContact(idRef.current.value, nameRef.current.value);
         closeModal();
     }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { ContactsProvider } from '../contexts/ContactsProvider';
 import { ConversationsProvider } from '../contexts/ConversationsProvider';
 import { SocketProvider } from '../contexts/SocketProvider';
@@ -7,21 +7,25 @@ import Dashboard from './Dashboard';
 import Loginpage from './Loginpage';
 
 function App() {
-  const [id, setId] = useLocalStorage();
+  // const [id, setId] = useLocalStorage();
+  const [login, setLogin] = useState(true);
+  const [id, setId] = useState();
 
-  const dashboard = (
-    <SocketProvider id={id}>
-      <ContactsProvider>
-        <ConversationsProvider id={id}>
-          <Dashboard id={id} />
-        </ConversationsProvider>
-      </ContactsProvider>
-    </SocketProvider>
-  );
+  const dashboard = (id) => {
+    return (
+      <SocketProvider id={id}>
+        <ContactsProvider>
+          <ConversationsProvider id={id}>
+            <Dashboard id={id} />
+          </ConversationsProvider>
+        </ContactsProvider>
+      </SocketProvider>
+    )
+  };
 
   return (
     <>
-      {id ? dashboard : < Loginpage onIdSubmit={setId} />}
+      {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : dashboard(id)}
     </>
   );
 }
