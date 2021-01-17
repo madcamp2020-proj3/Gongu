@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react'
 import { Container, Form, Button, Modal, Alert } from 'react-bootstrap'
 import { v4 as uuidV4 } from 'uuid'
 import Signup from './Signup';
+import { Row } from 'react-bootstrap';
+
 
 export default function Loginpage({ onIdSubmit, onLoginAdmit }) {
     const idRef = useRef();
@@ -60,7 +62,15 @@ export default function Loginpage({ onIdSubmit, onLoginAdmit }) {
                     </Alert> :
                     <></>
             }
-            <Container className="align-items-center d-flex" style={{ height: '100vh' }}>
+
+            <div className="mt-56 space-y-20 font-mono" style={{justifyContent: "center", alignItems: "center", display:"flex"}}>
+                <Row>
+                    <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
+                    <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
+                </Row>
+            </div>
+
+            <Container className="align-items-center d-flex" style={{ height: '40vh' }}>                
                 <Form className="w-100">
                     <Form.Group>
                         <Form.Label> Enter Your Id</Form.Label>
