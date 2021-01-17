@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button, lightColors, darkColors } from 'react-floating-action-button';
 import JobBoardComponent from './JobBoardComponent';
 import { FaPlus } from 'react-icons/fa';
-import data from '../assets/data.json';
 import Modal from './CreateChatModal';
 import { Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
@@ -47,15 +46,11 @@ export default function Domain({ setLogin, userId }) {
         if (category) {
             tags.push(...category);
         }
-
-        // return tags.some(tag => filters.includes(tag));
         return filters.every(filter => tags.includes(filter));
     }
 
     const handletagClick = (tag) => {
-        // avoid re-adding tag
         if (filters.includes(tag)) return;
-
         setFilters([...filters, tag]);
     }
 
@@ -69,7 +64,7 @@ export default function Domain({ setLogin, userId }) {
 
     const filteredJobs = jobs.filter(filterFunc);
 
-    function handleClick(e) {
+    function handleLogout(e) {
         e.preventDefault();
         setLogin(false);
     }
@@ -102,12 +97,13 @@ export default function Domain({ setLogin, userId }) {
                     <Col>
                         <div className="flex flex-col flex-wrap items-end ml-auto push">
                             <h1 className="text-lg ">
-                                {}님 안녕하세요
+                                {userId} 님 안녕하세요
                             </h1>
 
                             <h0>
-                                <button onClick={handleClick} className="text-lg text-white float-right font-bold py-2 px-3 border border-solid border-indigo-500 rounded w-28" style={{ backgroundColor: "#0080ff" }}>Logout</button>
+                                <button onClick={handleLogout} className="text-lg text-white float-right font-bold py-2 px-3 border border-solid border-indigo-500 rounded w-28" style={{ backgroundColor: "#0080ff" }}>Logout</button>
                                 <button onClick={handleClick} className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>Mypage</button>
+                                
                             </h0>
                         </div>
                     </Col>
