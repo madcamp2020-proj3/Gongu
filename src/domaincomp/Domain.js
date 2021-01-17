@@ -86,10 +86,13 @@ export default function Domain({ setLogin, userId }) {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result.recipients);
-                // createContact(result.recipients);
-                history.push('/chatroom/' + roomId);
-            });
+                if (result.recipients != undefined) {
+                    history.push('/chatroom/' + roomId);
+                }
+            })
+            .catch(
+
+            );
     }
 
     return (
@@ -102,7 +105,7 @@ export default function Domain({ setLogin, userId }) {
                     <Col>
                         <div className="flex flex-col flex-wrap items-end ml-auto push">
                             <h1 className="text-lg ">
-                                {}님 안녕하세요
+                                { }님 안녕하세요
                             </h1>
 
                             <h0>
@@ -113,7 +116,7 @@ export default function Domain({ setLogin, userId }) {
                     </Col>
                 </Row>
 
-                
+
             </header>
 
             <div className="container">
