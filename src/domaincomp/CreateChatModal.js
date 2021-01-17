@@ -141,7 +141,7 @@ const Modal = (props) => {
                     <main>
                         <form>
 
-                            <div class="form-group">
+                            <div class="form-group" required>
                                 <label>제목:</label>
                                 <input type="text" class="form-control" name="title" value={title} onChange={({ target: { value } }) => setTitle(value)}></input>
 
@@ -188,7 +188,7 @@ const Modal = (props) => {
                                 </Row>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" required>
                                 <label>지역:</label>
                                 <Row>
                                     <Col>
@@ -212,7 +212,7 @@ const Modal = (props) => {
                             </div>
 
                             <label >카테고리 선택:</label>
-                            <div class="form-group">
+                            <div class="form-group" required>
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("가공식품")} active={cSelected.includes("가공식품")}># 가공식품</Button>
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("농산물")} active={cSelected.includes("농산물")}># 농산물</Button>
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("과일")} active={cSelected.includes("과일")}># 과일</Button>

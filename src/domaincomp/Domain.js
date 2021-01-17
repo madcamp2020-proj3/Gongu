@@ -4,7 +4,7 @@ import JobBoardComponent from './JobBoardComponent';
 import { FaPlus } from 'react-icons/fa';
 import data from '../assets/data.json';
 import Modal from './CreateChatModal';
-import { Row } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 export default function Domain({ setLogin, userId }) {
@@ -96,10 +96,24 @@ export default function Domain({ setLogin, userId }) {
         <>
             <header className="mb-8 p-16 bg-white">
                 <Row>
-                    <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
-                    <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
+                    <div className="text-6xl ml-16 font-sans font-bold" style={{ color: "#0080ff" }}>Sy</div>
+                    <div className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>no</div>
+
+                    <Col>
+                        <div className="flex flex-col flex-wrap items-end ml-auto push">
+                            <h1 className="text-lg ">
+                                {}님 안녕하세요
+                            </h1>
+
+                            <h0>
+                                <button onClick={handleClick} className="text-lg text-white float-right font-bold py-2 px-3 border border-solid border-indigo-500 rounded w-28" style={{ backgroundColor: "#0080ff" }}>Logout</button>
+                                <button onClick={handleClick} className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>Mypage</button>
+                            </h0>
+                        </div>
+                    </Col>
                 </Row>
-                <button onClick={handleClick} className="text-lg text-white font-bold float-right py-2 px-3 border border-solid border-indigo-500 rounded" style={{ backgroundColor: "#0080ff" }}>Logout</button>
+
+                
             </header>
 
             <div className="container">
