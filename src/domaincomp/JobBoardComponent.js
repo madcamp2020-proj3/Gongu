@@ -1,15 +1,16 @@
 import React from 'react';
 
 const JobBoardComponent = ({ job:
-    { logo, isNew, title, startDate, endDate, subtitle, location, category, members, personnel },
-    handletagClick, goToRoom
+    { id, logo, isNew, title, startDate, endDate, subtitle, location, category, members, personnel },
+    handletagClick, goToRoom, key
 }) => {
     const tags = [];
 
     function handleEntrance(e) {
         e.preventDefault();
         console.log("클릭하였습니다.");
-        goToRoom();
+        console.log(id);
+        goToRoom(id);
     }
 
     if (category) {

@@ -38,11 +38,11 @@ function App() {
           return (
             !login
               ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} />
-              : <Domain setLogin={setLogin} />
+              : <Domain setLogin={setLogin} userId={id} />
           );
         }}
       />
-      <Route path='/chatroom' render={props => dashboard(id)} />
+      <Route path='/chatroom:roomId' render={props => dashboard(id)} />
     </BrowserRouter>
   );
 }
