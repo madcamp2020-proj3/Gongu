@@ -1,50 +1,69 @@
 import React, { useState, useRef } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Modal, Form, Button, Row, Col } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 
-export default function Mypage({ closeModal }) {
-    const idRef = useRef();
-    const pwRef = useRef();
-    const pw2Ref = useRef();
 
-    const [show, setShow] = useState(false);
+export default function Mypage({ close, userid, roominfo, idinfo }) {
+    const history = useHistory();
 
-    function handleOnClick(e) {
-        e.preventDefault();
-        // Check is there a blank
-        if (idRef.current.value === "" || pwRef.current.value === "" || pw2Ref.current.value === "") {
-            return;
-        }
-        
-        fetch('http://192.249.18.236:3001/mypage'             
-        )
+    function goToRoom(roomId) {
+        console.log(roomId);
+        fetch("http://192.249.18.236:3001/entrance", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "roomId": roomId,
+                "userId": userid
+            })
+        })
             .then(res => res.json())
-            .then(res => {
-                if (res.room) {
-                    // show modal
-                } else {
-                    closeModal();
+            .then(result => {
+                if (result.recipients != undefined) {
+                    history.push('/chatroom/' + roomId);
                 }
             })
+            .catch(
+
+            );
     }
+    function handleclick(e){
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    function handleEntrance(el) {
+        // e.preventDefault();
+        console.log("클릭하였습니다.");
+        console.log(el);
+
+        goToRoom(el.el);}
+    
+    var idx = 0; var id =0;
+    // function handleEntrance(el) {
+    //     // e.preventDefault();
+    //     console.log("클릭하였습니다.");
+    //     console.log(el);
+
+    //     const findin = (element) => element == el;
+
+    //     if(Array.isArray(roominfo)){
+    //     idx = roominfo.indexOf(el);
+    //     console.log(idx+"1");
+    //     if(Array.isArray(idinfo)){
+    //         console.log(idinfo);
+    //     // id = idinfo.get(idx);}
+    //     console.log(idx);
+    //     goToRoom(id);}}
+    // }
     return (
         <>
-            <Modal.Header closeButton>Mypage</Modal.Header>
+            <Modal.Header style={{backgroundColor: "#f4f5f9"}}>현재 참여 중인 채팅방
+            <button className="close" onClick={close}> &times; </button> </Modal.Header>
 
             <Modal.Body>
-                <Form>
-                    <Form.Group>
-                        <Form.Label>아이디</Form.Label>
-                        <Form.Control ref={idRef} type="tetx" required></Form.Control>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>비밀번호</Form.Label>
-                        <Form.Control ref={pwRef} type="password" required></Form.Control>
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>비밀번호 재확인</Form.Label>
-                        <Form.Control ref={pw2Ref} type="password" required></Form.Control>
-                    </Form.Group>
-                    <Button onClick={handleOnClick}>가입하기</Button>
+                <Form>{idinfo.map(el => 
+                    <div className="flex mb-2 shadow-sm items-center pl-3 p-2 font-bold">{el}
+                    <Button onClick={handleclick, handleEntrance({el})} className="ml-auto push" variant="outline-primary">바로가기</Button></div>)}
+                    
                 </Form>
             </Modal.Body>
         </>

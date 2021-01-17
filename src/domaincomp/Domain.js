@@ -2,13 +2,50 @@ import React, { useState, useEffect } from 'react';
 import { Container, Button, lightColors, darkColors } from 'react-floating-action-button';
 import JobBoardComponent from './JobBoardComponent';
 import { FaPlus } from 'react-icons/fa';
-import Modal from './CreateChatModal';
-import { Row, Col } from 'react-bootstrap';
+import Modal2 from './CreateChatModal';
+import { Row, Col, Modal } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import Mypage from './Mypage';
 
 export default function Domain({ setLogin, userId }) {
+    const [mypageOpen, setMypageOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
-    // const { createContact } = useContacts();
+    const [room, setRoom] = useState([]);
+    const [id, setId] = useState([]);
+
+    const closempModal = () => {
+        setMypageOpen(false);
+    }
+
+    const checkUser = (element) => element === userId;
+
+    function checkid(arr){
+        if (Array.isArray(arr)){
+        if (arr.findIndex(checkUser) === -1) return false;
+        else return true;}
+        else return false;
+    }
+
+    function selectroom(item){
+        if(checkid(item.recipients)) return true;
+        else return false;
+    }
+
+    function handlemypage(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        fetch('http://192.249.18.236:3001/mypage'             
+        )
+            .then(res => res.json())
+            .then(res => {
+                console.log(res.length);
+                var validRoom = res.filter(selectroom);
+                setRoom(validRoom.map((el) => el['title'])) ;
+                setId(validRoom.map((el) => el['id']));  
+            })
+            .then(setMypageOpen(true));
+    }
+
     const history = useHistory();
 
     const modalClose = () => {
@@ -105,7 +142,10 @@ export default function Domain({ setLogin, userId }) {
 
                             <h0>
                                 <button onClick={handleLogout} className="text-lg text-white float-right font-bold py-2 px-3 border border-solid border-indigo-500 rounded w-28" style={{ backgroundColor: "#0080ff" }}>Logout</button>
-                                <button onClick={handleClick} className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>Mypage</button>
+                                <button onClick={handlemypage } className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>Mypage</button>
+                                <Modal show={mypageOpen} onHide={closempModal}>
+                                    <Mypage close={closempModal} roominfo={room} userid={userId} idinfo={id}/>
+                                </Modal>
                                 
                             </h0>
                         </div>
@@ -148,8 +188,8 @@ export default function Domain({ setLogin, userId }) {
 
                     <Container>
                         <button onClick={() => handleClick, openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg shadow-lg"> <FaPlus /></button>
-                        <Modal open={modalOpen} close={closeModal} func={modalClose} header="새로운 채팅방 만들기" >
-                        </Modal>
+                        <Modal2 open={modalOpen} close={closeModal} func={modalClose} header="새로운 채팅방 만들기" >
+                        </Modal2>
 
                     </Container>
                 </div>
