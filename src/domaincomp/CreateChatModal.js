@@ -27,6 +27,7 @@ var Locat = {
 }
 
 const Modal = (props) => {
+
     const { open, close, header, func } = props;
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
@@ -114,6 +115,8 @@ const Modal = (props) => {
         NewChat.location = sido + "  " + gungu + "  " + dong;
         console.log(Date.now());
         
+
+
         fetch("http://192.249.18.236:3001/makeroom", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -220,7 +223,7 @@ const Modal = (props) => {
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("게임/취미")} active={cSelected.includes("게임/취미")}># 게임/취미</Button>
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("뷰티/미용")} active={cSelected.includes("뷰티/미용")}># 뷰티/미용</Button>
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("도서/티켓/음반")} active={cSelected.includes("도서/티켓/음반")}># 도서/티켓/음반</Button>
-                                </div><div class="form-group">
+                            </div><div class="form-group">
                                 <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("상시모집")} active={cSelected.includes("상시모집")}># 상시모집</Button>
                                 <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("대량구매")} active={cSelected.includes("대량구매")}># 대량구매</Button>
                                 <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("자취")} active={cSelected.includes("자취")}># 자취</Button>

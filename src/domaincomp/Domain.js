@@ -7,13 +7,15 @@ import Modal from './CreateChatModal';
 import { Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
-export default function Domain({ setLogin }) {
+export default function Domain({ setLogin, userId }) {
     const [modalOpen, setModalOpen] = useState(false);
-    const modalClose = () =>{
-        setModalOpen(false);
-    } 
-
+    // const { createContact } = useContacts();
     const history = useHistory();
+
+    const modalClose = () => {
+        setModalOpen(false);
+    }
+
     const openModal = () => {
         setModalOpen(true);
     }
@@ -72,8 +74,22 @@ export default function Domain({ setLogin }) {
         setLogin(false);
     }
 
-    function goToRoom() {
-        history.push('/chatroom');
+    function goToRoom(roomId) {
+        console.log(userId);
+        fetch("http://192.249.18.236:3001/entrance", {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                "roomId": roomId,
+                "userId": userId
+            })
+        })
+            .then(res => res.json())
+            .then(result => {
+                console.log(result.recipients);
+                // createContact(result.recipients);
+                history.push('/chatroom/' + roomId);
+            });
     }
 
     return (
@@ -119,7 +135,7 @@ export default function Domain({ setLogin }) {
 
                     <Container>
                         <button onClick={() => handleClick, openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg shadow-lg"> <FaPlus /></button>
-                        <Modal open={modalOpen} close={closeModal} func={modalClose}  header="새로운 채팅방 만들기" >
+                        <Modal open={modalOpen} close={closeModal} func={modalClose} header="새로운 채팅방 만들기" >
                         </Modal>
 
                     </Container>

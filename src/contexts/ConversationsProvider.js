@@ -10,7 +10,8 @@ export function useConversations() {
 }
 
 export function ConversationsProvider({ id, children }) {
-    const [conversations, setConversations] = useLocalStorage('conversations', []);
+    const path = window.location.pathname;
+    const [conversations, setConversations] = useLocalStorage('conversations' + path, []);
     const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
     const { contacts } = useContacts();
     const socket = useSocket();
@@ -57,6 +58,7 @@ export function ConversationsProvider({ id, children }) {
 
     function sendMessage(recipients, text) {
         console.log("여기까지 완료되었습니다.");
+        console.log(recipients);
         socket.emit('send-message', { recipients, text });
         addMessageToConversation({ recipients, text, sender: id })
     }

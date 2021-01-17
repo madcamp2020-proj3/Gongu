@@ -48,7 +48,7 @@ export default function Sidebar({ id }) {
 
             <Modal show={modalOpen} onHide={closeModal}>
                 {conversationOpen ?
-                    <NewConversationModal closeModal={closeModal} /> :
+                    <NewConversationModal closeModal={closeModal} myId={id} /> :
                     <NewContractModal closeModal={closeModal} />
                 }
             </Modal>

@@ -8,10 +8,11 @@ import Dashboard from './Dashboard';
 import Loginpage from './Loginpage';
 import Domain from '../domaincomp/Domain';
 import { BrowserRouter, Route } from 'react-router-dom';
+import useIdStorage from '../hooks/useIdStorage';
 
 function App() {
   const [login, setLogin] = useLoginStorage();
-  const [id, setId] = useState();
+  const [id, setId] = useIdStorage();
 
   const dashboard = (id) => {
     console.log(id);
@@ -38,11 +39,11 @@ function App() {
           return (
             !login
               ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} />
-              : <Domain setLogin={setLogin} />
+              : <Domain setLogin={setLogin} userId={id} />
           );
         }}
       />
-      <Route path='/chatroom' render={props => dashboard(id)} />
+      <Route path='/chatroom/:roomId' render={props => dashboard(id)} />
     </BrowserRouter>
   );
 }
