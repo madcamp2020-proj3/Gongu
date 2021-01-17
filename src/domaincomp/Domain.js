@@ -81,10 +81,13 @@ export default function Domain({ setLogin, userId }) {
         })
             .then(res => res.json())
             .then(result => {
-                console.log(result.recipients);
-                // createContact(result.recipients);
-                history.push('/chatroom/' + roomId);
-            });
+                if (result.recipients != undefined) {
+                    history.push('/chatroom/' + roomId);
+                }
+            })
+            .catch(
+
+            );
     }
 
     return (
@@ -109,7 +112,7 @@ export default function Domain({ setLogin, userId }) {
                     </Col>
                 </Row>
 
-                
+
             </header>
 
             <div className="container">
