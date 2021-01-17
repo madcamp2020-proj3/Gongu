@@ -42,7 +42,7 @@ function App() {
           );
         }}
       />
-      <Route path='/chatroom:roomId' render={props => dashboard(id)} />
+      <Route path='/chatroom/:roomId' render={props => dashboard(id)} />
     </BrowserRouter>
   );
 }

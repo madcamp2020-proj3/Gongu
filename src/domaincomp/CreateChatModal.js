@@ -112,10 +112,6 @@ const Modal = (props) => {
                 console.log("방이 만들어졌습니다.");
                 func();
             });
-<<<<<<< HEAD
-=======
-
->>>>>>> a508f0840ce71822b8aa754194438d8d4d71c99e
     }
 
     return (

@@ -6,7 +6,6 @@ import data from '../assets/data.json';
 import Modal from './CreateChatModal';
 import { Row } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
-import { useContacts } from '../contexts/ContactsProvider';
 
 export default function Domain({ setLogin, userId }) {
     const [modalOpen, setModalOpen] = useState(false);
@@ -89,7 +88,7 @@ export default function Domain({ setLogin, userId }) {
             .then(result => {
                 console.log(result.recipients);
                 // createContact(result.recipients);
-                history.push('/chatroom' + roomId);
+                history.push('/chatroom/' + roomId);
             });
     }
 
