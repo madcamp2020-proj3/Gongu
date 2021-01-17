@@ -4,47 +4,22 @@ import { useContacts } from '../contexts/ContactsProvider';
 import { useConversations } from '../contexts/ConversationsProvider';
 
 
-export default function NewconversationModal({ closeModal }) {
-    const [selectedContactIds, setSelectedContactIds] = useState([]);
-    const { contacts } = useContacts();
+export default function NewconversationModal({ closeModal, myId }) {
     const { createConversation } = useConversations();
+    const path = window.location.pathname;
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        createConversation(selectedContactIds);
+        console.log("눌렀습니다.")
+        fetch('http://192.249.18.236:3001' + path)
+            .then(res => res.json())
+            .then(result => {
+                const idx = result.recipients.indexOf(myId);
+                result.recipients.splice(idx, 1);
+                createConversation(result.recipients);
+            });
         closeModal();
     }
 
-    function handleCheckboxChange(contactId) {
-        setSelectedContactIds(prevSelectedContactIds => {
-            if (prevSelectedContactIds.includes(contactId)) {
-                return prevSelectedContactIds.filter(prevId => {
-                    return contactId !== prevId;
-                })
-            } else {
-                return [...prevSelectedContactIds, contactId];
-            }
-        })
-    }
-
-    return (
-        <>
-            <Modal.Header closeButton>Create Conversation</Modal.Header>
-            <Modal.Body>
-                <Form onSubmit={handleSubmit}>
-                    {contacts.map(contact => (
-                        <Form.Group controlId={contact.id} key={contact.id}>
-                            <Form.Check
-                                type="checkbox"
-                                value={selectedContactIds.includes(contact.id)}
-                                label={contact.name}
-                                onChange={() => handleCheckboxChange(contact.id)} />
-                        </Form.Group>
-                    ))}
-                    <Button type="submit">Create</Button>
-                </Form>
-            </Modal.Body>
-        </>
-    )
+    return <Button onClick={handleSubmit}>Create</Button>;
 }

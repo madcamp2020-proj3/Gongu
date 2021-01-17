@@ -57,6 +57,7 @@ export function ConversationsProvider({ id, children }) {
 
     function sendMessage(recipients, text) {
         console.log("여기까지 완료되었습니다.");
+        console.log(recipients);
         socket.emit('send-message', { recipients, text });
         addMessageToConversation({ recipients, text, sender: id })
     }
