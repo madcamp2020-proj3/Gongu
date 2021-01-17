@@ -10,7 +10,8 @@ export function useConversations() {
 }
 
 export function ConversationsProvider({ id, children }) {
-    const [conversations, setConversations] = useLocalStorage('conversations', []);
+    const path = window.location.pathname;
+    const [conversations, setConversations] = useLocalStorage('conversations' + path, []);
     const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
     const { contacts } = useContacts();
     const socket = useSocket();

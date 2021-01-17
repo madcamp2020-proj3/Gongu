@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 
-const PREFIX = 'login-information';
+const PREFIX = 'id-information';
 
-export default function useLoginStorage(initialValue = false) {
+export default function useIdStorage(initialValue = "") {
     const prefixedKey = PREFIX;
     const [value, setValue] = useState(() => {
         const jsonValue = localStorage.getItem(prefixedKey);
