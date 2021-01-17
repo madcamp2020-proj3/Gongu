@@ -2,10 +2,10 @@ import React, { useState, useRef, useCallback } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { useConversations } from '../contexts/ConversationsProvider';
 
-export default function OpenConversation() {
+export default function OpenConversation({ myId }) {
     const [text, setText] = useState('');
     const { sendMessage, selectedConversation } = useConversations();
-    const lastMessageRef = useRef();
+    const path = window.location.pathname;
     const setRef = useCallback(node => {
         if (node) {
             node.scrollIntoView({ smooth: true });
@@ -14,11 +14,16 @@ export default function OpenConversation() {
 
     function handleSubmit(e) {
         e.preventDefault();
-
-        sendMessage(
-            selectedConversation.recipients.map(r => r.id),
-            text
-        );
+        fetch('http://192.249.18.236:3001' + path)
+            .then(res => res.json())
+            .then(result => {
+                const idx = result.recipients.indexOf(myId);
+                result.recipients.splice(idx, 1);
+                sendMessage(
+                    result.recipients,
+                    text
+                );
+            });
         setText('');
     }
 
@@ -49,7 +54,6 @@ export default function OpenConversation() {
                 <Form.Group className="m-2">
                     <InputGroup>
                         <Form.Control
-                            as="textarea"
                             required
                             value={text}
                             onChange={e => setText(e.target.value)} />

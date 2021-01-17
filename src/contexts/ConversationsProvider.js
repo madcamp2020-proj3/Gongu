@@ -18,47 +18,35 @@ export function ConversationsProvider({ id, children }) {
 
     function createConversation(recipients) {
         setConversations(prevConversations => {
-            return [...prevConversations, { recipients, messages: [] }];
+            if (prevConversations.length == 0) {
+                return [{ recipients, messages: [] }];
+            } else {
+                return [{ recipients, messages: prevConversations[0].messages }];
+            }
         })
     }
 
     const addMessageToConversation = useCallback(({ recipients, text, sender }) => {
         setConversations(prevConversations => {
-            let madeChange = false;
             const newMessage = { sender, text };
             const newConversations = prevConversations.map
                 (conversation => {
-                    if (arrayEquality(conversation.recipients, recipients)) {
-                        madeChange = true;
-                        return {
-                            ...conversation,
-                            messages: [...conversation.messages, newMessage]
-                        }
+                    return {
+                        ...conversation,
+                        messages: [...conversation.messages, newMessage]
                     }
-                    return conversation;
                 });
-
-            if (madeChange) {
-                return newConversations;
-            } else {
-                return [
-                    ...prevConversations,
-                    { recipients, messages: [newMessage] }
-                ];
-            }
+            return newConversations;
         });
     }, [setConversations]);
 
     useEffect(() => {
         if (socket == null) return;
         socket.on('receive-message', addMessageToConversation);
-
         return () => socket.off('receive-message');
     }, [socket, addMessageToConversation]);
 
     function sendMessage(recipients, text) {
-        console.log("여기까지 완료되었습니다.");
-        console.log(recipients);
         socket.emit('send-message', { recipients, text });
         addMessageToConversation({ recipients, text, sender: id })
     }
@@ -102,10 +90,8 @@ export function ConversationsProvider({ id, children }) {
 
 function arrayEquality(a, b) {
     if (a.length !== b.length) return false;
-
     a.sort();
     b.sort();
-
     return a.every((element, index) => {
         return element === b[index];
     });
