@@ -18,6 +18,7 @@ export function ConversationsProvider({ id, children }) {
 
     function createConversation(recipients) {
         setConversations(prevConversations => {
+            console.log("여긴가...", prevConversations)
             if (prevConversations.length == 0) {
                 return [{ recipients, messages: [] }];
             } else {
@@ -26,17 +27,18 @@ export function ConversationsProvider({ id, children }) {
         })
     }
 
-    function backupHistory(roomId, recipients) {
+    async function backupHistory(roomId, recipients) {
         console.log("백업 요청 : " + roomId);
         return fetch("http://192.249.18.236:3001/backup/" + roomId)
             .then(res => res.json())
             .then(result => {
                 return setConversations(prevConversations => {
                     if (prevConversations.length != 0) {
+                        console.log(recipients, result);
                         return [{ recipients, messages: result }];
                     } else {
                         console.log(recipients, result);
-                        return [{ recipients, messages: result }];
+                        return [{ recipients, messages: [] }];
                     }
                 });
             });
@@ -69,7 +71,7 @@ export function ConversationsProvider({ id, children }) {
     }
 
     const formattedConversations = conversations.map((conversation, index) => {
-        console.log(conversations);
+        console.log("채팅 보맷팅 전: ", conversations);
         console.log("채팅 포맷팅");
         const recipients = conversation.recipients.map(recipient => {
             const contact = contacts.find(contact => {

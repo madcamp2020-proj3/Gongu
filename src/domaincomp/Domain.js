@@ -125,16 +125,10 @@ export default function Domain({ setLogin, userId }) {
             .then(res => res.json())
             .then(result => {
                 if (result.recipients != undefined) {
-                    // request backup data from server
-                    backupHistory(roomId, result.recipients).then(_ => {
-                        console.log("간다!!!");
-                        history.push('/chatroom/' + roomId);
-                    });
+                    console.log("이동");
+                    history.push('/chatroom/' + roomId);
                 }
             })
-            .catch(
-
-            );
     }
 
     function checkNew(date) {

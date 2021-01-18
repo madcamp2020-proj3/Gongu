@@ -16,8 +16,9 @@ export default function Sidebar({ id }) {
     const [modalOpen, setModalOpen] = useState(false);
     const conversationOpen = activeKey === CONVERSATION_KEY;
     const path = window.location.pathname;
+    const parseData = path.split('/')[path.split('/').length - 1];
     const history = useHistory();
-    const { createConversation } = useConversations()
+    const { createConversation, backupHistory } = useConversations()
 
     useEffect(() => {
         fetch('http://192.249.18.236:3001' + path)
@@ -25,7 +26,8 @@ export default function Sidebar({ id }) {
             .then(result => {
                 const idx = result.recipients.indexOf(id);
                 result.recipients.splice(idx, 1);
-                createConversation(result.recipients);
+                // createConversation(result.recipients);
+                backupHistory(parseData, result.recipients);
             });
     }, []);
 
