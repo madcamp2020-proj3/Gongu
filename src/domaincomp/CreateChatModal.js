@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import "./modal.css";
 import DatePicker from 'react-datepicker';
 import { Row, Col, Button } from 'react-bootstrap';
@@ -103,7 +103,6 @@ export default function CreateChat({ open, close, header, func, myId }) {
     }
 
     function clickhandler() {
-        console.log("이게 된다.");
         NewChat.id = Date.now();
         NewChat.owner = myId;
         NewChat.title = title;
@@ -121,7 +120,7 @@ export default function CreateChat({ open, close, header, func, myId }) {
         // console.log(now);
         // NewChat.isNew = (sd == now);
         // console.log(NewChat.isNew);
-        
+
         console.log(Date.now());
 
         fetch("http://192.249.18.236:3001/makeroom", {

@@ -7,7 +7,6 @@ export default function Mypage({ close, userid, roominfo, idinfo }) {
     const history = useHistory();
 
     function goToRoom(roomId) {
-        console.log(roomId);
         fetch("http://192.249.18.236:3001/entrance", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -30,22 +29,24 @@ export default function Mypage({ close, userid, roominfo, idinfo }) {
     var idx = -2; var id = -2;
     function handleEntrance(el) {
 
-        if(Array.isArray(roominfo)){
-        idx = roominfo.indexOf(el.el);
+        if (Array.isArray(roominfo)) {
+            idx = roominfo.indexOf(el.el);
 
-        if(Array.isArray(idinfo)){
-        id = idinfo[idx];
-        goToRoom(id);}}
+            if (Array.isArray(idinfo)) {
+                id = idinfo[idx];
+                goToRoom(id);
+            }
         }
-    
+    }
+
     return (
         <>
-            <Modal.Header style={{backgroundColor: "#f4f5f9"}}>현재 참여 중인 채팅방
+            <Modal.Header style={{ backgroundColor: "#f4f5f9" }}>현재 참여 중인 채팅방
             <button className="close" onClick={close}> &times; </button> </Modal.Header>
 
             <Modal.Body>
-                <Form className="flex flex-col">{roominfo.map(el => 
-                    <span onClick={() => handleEntrance({el})} className="cursor-pointer mb-2 shadow-sm items-center pl-3 p-2 font-bold">{el}</span>)}
+                <Form className="flex flex-col">{roominfo.map(el =>
+                    <span onClick={() => handleEntrance({ el })} className="cursor-pointer mb-2 shadow-sm items-center pl-3 p-2 font-bold">{el}</span>)}
                 </Form>
             </Modal.Body>
         </>

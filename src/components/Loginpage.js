@@ -24,9 +24,7 @@ export default function Loginpage({ onIdSubmit, onLoginAdmit }) {
         })
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 if (res.token) {
-                    console.log(typeof onLoginAdmit);
                     admitLogin();
                 } else {
                     if (res.type == 1) {
@@ -63,14 +61,14 @@ export default function Loginpage({ onIdSubmit, onLoginAdmit }) {
                     <></>
             }
 
-            <div className="mt-56 space-y-20 font-mono" style={{justifyContent: "center", alignItems: "center", display:"flex"}}>
+            <div className="mt-56 space-y-20 font-mono" style={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
                 <Row>
                     <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
                     <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
                 </Row>
             </div>
 
-            <Container className="align-items-center d-flex" style={{ height: '40vh' }}>                
+            <Container className="align-items-center d-flex" style={{ height: '40vh' }}>
                 <Form className="w-100">
                     <Form.Group>
                         <Form.Label> Enter Your Id</Form.Label>

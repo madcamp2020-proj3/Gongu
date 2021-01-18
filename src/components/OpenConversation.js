@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { useConversations } from '../contexts/ConversationsProvider';
 
@@ -43,7 +43,7 @@ export default function OpenConversation({ myId }) {
                                     {message.text}
                                 </div>
                                 <div className={`text-muted smamll ${message.fromMe ? 'text-right' : ''}`}>
-                                    {message.fromMe ? 'You' : message.senderName}
+                                    {message.fromMe ? 'You' : message.id}
                                 </div>
                             </div>
                         );
