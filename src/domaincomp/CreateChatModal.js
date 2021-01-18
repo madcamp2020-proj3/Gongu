@@ -40,7 +40,9 @@ export default function CreateChat({ open, close, header, func, myId }) {
     const [sido, setSido] = useState("");
     const [gungu, setGungu] = useState("");
     const [dong, setDong] = useState("");
+    const [imgBase64, setImgBase64] = useState("");
 
+    
     const changeSelectOptionHandler = (event) => {
         setSido(event.target.value);
     }
@@ -102,33 +104,33 @@ export default function CreateChat({ open, close, header, func, myId }) {
         setCSelected([...cSelected]);
     }
 
-    // function encodeBase64ImageFile (image) {
-    //     return new Promise((resolve, reject) => {
-    //       let reader = new FileReader()
-    //       // convert the file to base64 text
-    //       reader.readAsDataURL(image)
-    //       // on reader load somthing...
-    //       reader.onload = (event) => {
-    //         resolve(event.target.result)
-    //       }
-    //       reader.onerror = (error) => {
-    //         reject(error)
-    //       }
-    //     })
-    //   }
-    // function encodeImageFileAsURL(element) {
-    //     var file = element.files[0];
-    //     var reader = new FileReader();
-    //     reader.onloadend = function() {
-    //       console.log('RESULT', reader.result)
-    //     }
-    //     reader.readAsDataURL(file);
-    //   }
+    function _handleReaderLoaded (readerEvt) {
+        let binaryString = readerEvt;
+        setImage({
+            base64TextString : btoa(binaryString)
+        })
+    }
+    
+    function handleimage(e){
+        let file = e.target.files[0];
+        
+        let reader = new FileReader();
+        reader.onloadend = () => {
+            const base64 = reader.result;
+            if (base64) {
+                setImgBase64(base64.toString());
+            }
+        }
+        if (file) {
+            reader.readAsDataURL(file);
+            setImage(file);
+        }
 
-    // const imageToBase64 = require('image-to-base64');
-      
+        console.log(file)
+        
+    }
 
-    function clickhandler() {
+    function clickhandler(e) {
         NewChat.id = Date.now();
         NewChat.owner = myId;
         NewChat.title = title;
@@ -140,32 +142,7 @@ export default function CreateChat({ open, close, header, func, myId }) {
         NewChat.startDate = moment(startDate).format('YYYY-MM-DD');
         NewChat.endDate = moment(endDate).format('YYYY-MM-DD');
         NewChat.location = sido + "  " + gungu + "  " + dong;
-
-        // if (image !== null){
-        //     encodeImageFileAsURL(image)
-        //     .then(data => console.log(data))
-        // }
-        // if (image !== null){
-        //     NewChat.logo = imageToBase64(image)
-            // .then(
-            //     (response) => {console.log(response);}
-            // )
-            // .catch(
-            //     (error) => {console.log(error);}
-            // )
-        
         console.log(Date.now());
-        
-        // if (image !== null){
-        // fetch("http://192.249.18.236:3001/roomimg", {
-        //     method: 'POST',
-        //     body: image, 
-        // })
-        //     .then(res => {
-        //         console.log("사진 업로드가 완료되었습니다.");
-        //         // func();
-        //     });
-        // }
 
         fetch("http://192.249.18.236:3001/makeroom", {
             method: 'POST',
@@ -177,7 +154,47 @@ export default function CreateChat({ open, close, header, func, myId }) {
                 func();
             });
         }
-    
+
+        // function encodeImageFileAsURL() {
+        //     console.log(fileReader);
+        //     var filesSelected = document.getElementById("inputFileToLoad").files;
+        //     if (filesSelected.length > 0) {
+        //     var fileToLoad = filesSelected[0];
+
+        //     var fileReader = new FileReader();
+
+        //     fileReader.onload = function(fileLoadedEvent) {
+        //         var srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+        //         var newImage = document.createElement('img');
+        //         newImage.src = srcData;
+
+        //         document.getElementById("imgTest").innerHTML = newImage.outerHTML;
+        //         alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+        //         console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
+        //     }
+        //     fileReader.readAsDataURL(fileToLoad);
+        //     }
+        //     console.log(fileReader);
+        // }
+
+        const getBase64 = (file) => new Promise(function (resolve, reject) {
+            let reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = () => resolve(reader.result)
+            reader.onerror = (error) => reject('Error: ', error);
+        })
+
+        const _changeImg = (e) => {
+            const file = e.target.files[0];
+            let encoded;
+            getBase64(file)
+              .then((result) => {
+                encoded = result;
+                setImage(encoded);
+               })
+              .catch(e => console.log(e))
+        }
 
     return (
         <div className={open ? 'openModal modal' : 'modal'} id="myModal">
@@ -199,7 +216,13 @@ export default function CreateChat({ open, close, header, func, myId }) {
                             {/* accept="image/jpg,impge/png,image/jpeg,image/gif" */}
                             <div class="form-group">
                                 <label>사진:</label>
-                                <input type="file" accept="image/*" name="image" value={image} onChange={({ target: { value } }) => setImage(value)}></input>
+                                {/* <input id="inputFileToLoad" type="file" onchange={handleimage} />
+                                    <div id="imgTest"></div>
+                                    <script type='text/javascript'>
+                                    </script> */}
+                                {/* <div style={{"backgroundColor": "#efefef", "width":"150px", "height" : "150px"}}></div>
+                                <div> */
+                                <input type="file" accept=".jpg, .png, .jpeg, .gif" name="image" id="image" onChange={_changeImg}></input>}
                             </div>
 
                             <div class="form-group">
