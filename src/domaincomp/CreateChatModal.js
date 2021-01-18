@@ -102,27 +102,71 @@ export default function CreateChat({ open, close, header, func, myId }) {
         setCSelected([...cSelected]);
     }
 
+    // function encodeBase64ImageFile (image) {
+    //     return new Promise((resolve, reject) => {
+    //       let reader = new FileReader()
+    //       // convert the file to base64 text
+    //       reader.readAsDataURL(image)
+    //       // on reader load somthing...
+    //       reader.onload = (event) => {
+    //         resolve(event.target.result)
+    //       }
+    //       reader.onerror = (error) => {
+    //         reject(error)
+    //       }
+    //     })
+    //   }
+    // function encodeImageFileAsURL(element) {
+    //     var file = element.files[0];
+    //     var reader = new FileReader();
+    //     reader.onloadend = function() {
+    //       console.log('RESULT', reader.result)
+    //     }
+    //     reader.readAsDataURL(file);
+    //   }
+
+    // const imageToBase64 = require('image-to-base64');
+      
+
     function clickhandler() {
         console.log("이게 된다.");
         NewChat.id = Date.now();
         NewChat.owner = myId;
         NewChat.title = title;
         NewChat.subtitle = subtitle;
+        NewChat.logo = image;
         NewChat.sido = sido;
         NewChat.personnel = members;
-        NewChat.logo = image;
         NewChat.category = cSelected;
         NewChat.startDate = moment(startDate).format('YYYY-MM-DD');
         NewChat.endDate = moment(endDate).format('YYYY-MM-DD');
         NewChat.location = sido + "  " + gungu + "  " + dong;
-        // var sd = moment(startDate).format('YYYY-MM-DD');
-        // var now = moment().utcOffset('+09:00').format('YYYY-MM-DD');
-        // console.log(sd);
-        // console.log(now);
-        // NewChat.isNew = (sd == now);
-        // console.log(NewChat.isNew);
+
+        // if (image !== null){
+        //     encodeImageFileAsURL(image)
+        //     .then(data => console.log(data))
+        // }
+        // if (image !== null){
+        //     NewChat.logo = imageToBase64(image)
+            // .then(
+            //     (response) => {console.log(response);}
+            // )
+            // .catch(
+            //     (error) => {console.log(error);}
+            // )
         
         console.log(Date.now());
+        
+        // if (image !== null){
+        // fetch("http://192.249.18.236:3001/roomimg", {
+        //     method: 'POST',
+        //     body: image, 
+        // })
+        //     .then(res => {
+        //         console.log("사진 업로드가 완료되었습니다.");
+        //         // func();
+        //     });
+        // }
 
         fetch("http://192.249.18.236:3001/makeroom", {
             method: 'POST',
@@ -133,7 +177,8 @@ export default function CreateChat({ open, close, header, func, myId }) {
                 console.log("방이 만들어졌습니다.");
                 func();
             });
-    }
+        }
+    
 
     return (
         <div className={open ? 'openModal modal' : 'modal'} id="myModal">
@@ -151,12 +196,11 @@ export default function CreateChat({ open, close, header, func, myId }) {
                             <div class="form-group" required>
                                 <label>제목:</label>
                                 <input type="text" class="form-control" name="title" value={title} onChange={({ target: { value } }) => setTitle(value)}></input>
-
                             </div>
-
+                            {/* accept="image/jpg,impge/png,image/jpeg,image/gif" */}
                             <div class="form-group">
                                 <label>사진:</label>
-                                <input type="file" accept="image/jpg,impge/png,image/jpeg,image/gif"  name="image" value={image} onChange={({ target: { value } }) => setImage(value)}></input>
+                                <input type="file" accept="image/*" name="image" value={image} onChange={({ target: { value } }) => setImage(value)}></input>
                             </div>
 
                             <div class="form-group">
