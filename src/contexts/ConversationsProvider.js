@@ -26,6 +26,22 @@ export function ConversationsProvider({ id, children }) {
         })
     }
 
+    function backupHistory(roomId, recipients) {
+        console.log("백업 요청 : " + roomId);
+        return fetch("http://192.249.18.236:3001/backup/" + roomId)
+            .then(res => res.json())
+            .then(result => {
+                return setConversations(prevConversations => {
+                    if (prevConversations.length != 0) {
+                        return [{ recipients, messages: result }];
+                    } else {
+                        console.log(recipients, result);
+                        return [{ recipients, messages: result }];
+                    }
+                });
+            });
+    }
+
     const addMessageToConversation = useCallback(({ recipients, text, sender }) => {
         setConversations(prevConversations => {
             const newMessage = { sender, text };
@@ -48,12 +64,13 @@ export function ConversationsProvider({ id, children }) {
 
     function sendMessage(recipients, text) {
         const parseData = path.split('/')[path.split('/').length - 1]
-        console.log(parseData);
         socket.emit('send-message', { recipients, text, parseData });
         addMessageToConversation({ recipients, text, sender: id });
     }
 
     const formattedConversations = conversations.map((conversation, index) => {
+        console.log(conversations);
+        console.log("채팅 포맷팅");
         const recipients = conversation.recipients.map(recipient => {
             const contact = contacts.find(contact => {
                 return contact.id === recipient;
@@ -63,12 +80,8 @@ export function ConversationsProvider({ id, children }) {
         });
 
         const messages = conversation.messages.map(m => {
-            const contact = contacts.find(contact => {
-                return contact.id === m.sender;
-            });
-            const name = (contact && contact.name) || m.sender;
             const fromMe = id === m.sender;
-            return { ...m, senderName: name, fromMe };
+            return { ...m, fromMe };
         });
 
         const selected = index === selectedConversationIndex;
@@ -80,7 +93,8 @@ export function ConversationsProvider({ id, children }) {
         selectedConversation: formattedConversations[selectedConversationIndex],
         sendMessage,
         selectConversationIndex: setSelectedConversationIndex,
-        createConversation
+        createConversation,
+        backupHistory
     }
 
     return (
@@ -88,13 +102,4 @@ export function ConversationsProvider({ id, children }) {
             {children}
         </ConversationsContext.Provider>
     )
-}
-
-function arrayEquality(a, b) {
-    if (a.length !== b.length) return false;
-    a.sort();
-    b.sort();
-    return a.every((element, index) => {
-        return element === b[index];
-    });
 }

@@ -8,8 +8,6 @@ const JobBoardComponent = ({ job:
 
     function handleEntrance(e) {
         e.preventDefault();
-        console.log("클릭하였습니다.");
-        console.log(id);
         goToRoom(id);
     }
 

@@ -7,12 +7,14 @@ import { Row, Col, Modal } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Mypage from './Mypage';
 import moment from 'moment';
+import { useConversations } from '../contexts/ConversationsProvider';
 
 export default function Domain({ setLogin, userId }) {
     const [mypageOpen, setMypageOpen] = useState(false);
     const [modalOpen, setModalOpen] = useState(false);
     const [room, setRoom] = useState([]);
     const [id, setId] = useState([]);
+    const { backupHistory } = useConversations();
 
     const closempModal = () => {
         setMypageOpen(false);
@@ -37,11 +39,9 @@ export default function Domain({ setLogin, userId }) {
         e.preventDefault();
         e.stopPropagation();
 
-        fetch('http://192.249.18.236:3001/mypage'
-        )
+        fetch('http://192.249.18.236:3001/mypage')
             .then(res => res.json())
             .then(res => {
-                console.log(res.length);
                 var validRoom = res.filter(selectroom);
                 setRoom(validRoom.map((el) => el['title']));
                 setId(validRoom.map((el) => el.id));
@@ -114,7 +114,6 @@ export default function Domain({ setLogin, userId }) {
     }
 
     function goToRoom(roomId) {
-        console.log(userId);
         fetch("http://192.249.18.236:3001/entrance", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -126,7 +125,11 @@ export default function Domain({ setLogin, userId }) {
             .then(res => res.json())
             .then(result => {
                 if (result.recipients != undefined) {
-                    history.push('/chatroom/' + roomId);
+                    // request backup data from server
+                    backupHistory(roomId, result.recipients).then(_ => {
+                        console.log("간다!!!");
+                        history.push('/chatroom/' + roomId);
+                    });
                 }
             })
             .catch(
@@ -186,7 +189,7 @@ export default function Domain({ setLogin, userId }) {
                     jobs.length === 0 ? (
                         <p>Jobs are fetching...</p>
                     ) : (
-                            
+
                             filteredJobs2.map(job => (
                                 <JobBoardComponent
                                     job={job}

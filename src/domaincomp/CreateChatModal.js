@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, { useState } from 'react';
 import "./modal.css";
 import DatePicker from 'react-datepicker';
 import { Row, Col, Button } from 'react-bootstrap';
@@ -129,7 +129,6 @@ export default function CreateChat({ open, close, header, func, myId }) {
       
 
     function clickhandler() {
-        console.log("이게 된다.");
         NewChat.id = Date.now();
         NewChat.owner = myId;
         NewChat.title = title;

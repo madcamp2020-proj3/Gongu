@@ -9,13 +9,13 @@ import Loginpage from './Loginpage';
 import Domain from '../domaincomp/Domain';
 import { BrowserRouter, Route } from 'react-router-dom';
 import useIdStorage from '../hooks/useIdStorage';
+import Conversation from './Conversation';
 
 function App() {
   const [login, setLogin] = useLoginStorage();
   const [id, setId] = useIdStorage();
 
   const dashboard = (id) => {
-    console.log(id);
     return (
       <SocketProvider id={id}>
         <ContactsProvider>
@@ -24,8 +24,18 @@ function App() {
           </ConversationsProvider>
         </ContactsProvider>
       </SocketProvider>
-    )
-  };
+    );
+  }
+
+  const doaminboard = (id) => {
+    return (
+      <ContactsProvider>
+        <ConversationsProvider id={id}>
+          <Domain setLogin={setLogin} userId={id} />
+        </ConversationsProvider>
+      </ContactsProvider>
+    );
+  }
 
   return (
     <BrowserRouter>
@@ -34,7 +44,7 @@ function App() {
           return (
             !login
               ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} />
-              : <Domain setLogin={setLogin} userId={id} />
+              : doaminboard(id)
           );
         }}
       />

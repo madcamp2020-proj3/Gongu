@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { useConversations } from '../contexts/ConversationsProvider';
 
@@ -12,6 +12,8 @@ export default function OpenConversation({ myId }) {
         }
     }, []);
 
+    console.log(selectedConversation);
+    console.log("채팅창이 그려진다.");
     function handleSubmit(e) {
         e.preventDefault();
         fetch('http://192.249.18.236:3001' + path)
@@ -43,7 +45,7 @@ export default function OpenConversation({ myId }) {
                                     {message.text}
                                 </div>
                                 <div className={`text-muted smamll ${message.fromMe ? 'text-right' : ''}`}>
-                                    {message.fromMe ? 'You' : message.senderName}
+                                    {message.fromMe ? 'You' : message.id}
                                 </div>
                             </div>
                         );
