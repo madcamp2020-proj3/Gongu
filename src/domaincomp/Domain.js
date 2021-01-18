@@ -50,6 +50,9 @@ export default function Domain({ setLogin, userId }) {
     const history = useHistory();
 
     const modalClose = () => {
+        fetch("http://192.249.18.236:3001/makeroom")
+            .then(res => res.json())
+            .then(result => setJobs(result));
         setModalOpen(false);
     }
 

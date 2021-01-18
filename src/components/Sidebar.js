@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Tab, Nav, Button, Modal, Form } from 'react-bootstrap';
 import Conversation from './Conversation';
 import Contract from './Contact';
 import NewConversationModal from './NewConversationModal'
 import NewContractModal from './NewContactModal'
 import { useHistory } from 'react-router-dom';
+import { useConversations } from '../contexts/ConversationsProvider';
 
 
 const CONVERSATION_KEY = "conversation";
@@ -16,6 +17,17 @@ export default function Sidebar({ id }) {
     const conversationOpen = activeKey === CONVERSATION_KEY;
     const path = window.location.pathname;
     const history = useHistory();
+    const { createConversation } = useConversations()
+
+    useEffect(() => {
+        fetch('http://192.249.18.236:3001' + path)
+            .then(res => res.json())
+            .then(result => {
+                const idx = result.recipients.indexOf(id);
+                result.recipients.splice(idx, 1);
+                createConversation(result.recipients);
+            });
+    }, []);
 
     function closeModal() {
         setModalOpen(false);
