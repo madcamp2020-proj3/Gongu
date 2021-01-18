@@ -21,5 +21,5 @@ export default function NewconversationModal({ closeModal, myId }) {
         closeModal();
     }
 
-    return <Button onClick={handleSubmit}>Create</Button>;
+    return <Button>Create</Button>;
 }
