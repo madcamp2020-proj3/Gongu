@@ -35,6 +35,7 @@ export default function Domain({ setLogin, userId }) {
     function handlemypage(e) {
         e.preventDefault();
         e.stopPropagation();
+
         fetch('http://192.249.18.236:3001/mypage'
         )
             .then(res => res.json())
@@ -42,7 +43,7 @@ export default function Domain({ setLogin, userId }) {
                 console.log(res.length);
                 var validRoom = res.filter(selectroom);
                 setRoom(validRoom.map((el) => el['title']));
-                setId(validRoom.map((el) => el['id']));
+                setId(validRoom.map((el) => el.id));
             })
             .then(setMypageOpen(true));
     }
@@ -139,7 +140,7 @@ export default function Domain({ setLogin, userId }) {
                     <div className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>no</div>
 
                     <Col>
-                        <div className="flex flex-col flex-wrap items-end ml-auto push">
+                        <div className="flex flex-col flex-wrap items-end ml-auto push group">
                             <h1 className="text-lg ">
                                 {userId} 님 안녕하세요
                             </h1>

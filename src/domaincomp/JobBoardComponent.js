@@ -19,14 +19,14 @@ const JobBoardComponent = ({ job:
 
     return (
         <div className={`flex flex-col bg-white shadow-md my-16 mx-10 p-6 rounded ${isNew && 'border-l-4 border-indigo-200 border-solid'} sm:flex-row sm:my-8`}>
-            <div className="flex flex-col justify-between">
+            <div className="flex sm:flex-col justify-between">
                 <img
                     className="-mt-16 mb-4 w-20 h-20 sm:h-24 sm:w-24 sm:my-0"
                     src={logo == null ? "/images/shortly.svg" : logo}
                     alt=""
                 />
                 <button onClick={handleEntrance}
-                    className="bg-indigo-100 text-indigo-600 px-2 py-1 mx-1 font-bold text-lg justify-center col-centered border rounded border-solid border-indigo-700">
+                    className="-mt-1 bg-indigo-100 text-indigo-600 px-4 sm:px-2 sm:py-1 font-bold text-lg border rounded border-solid border-indigo-700 sm:my-0">
                     입장
             </button>
             </div>
@@ -46,7 +46,7 @@ const JobBoardComponent = ({ job:
                 </p>
             </div>
 
-            <div className="flex flex-col justify-between ml-auto push">
+            <div className="flex flex-col justify-between ml-auto push mt-3 sm:mt-0">
                 <h2 className="text-lg text-right mr-4">
                     <span className="text-gray-500">{startDate}</span>
                     <span className="text-gray-500"> ~ </span>
@@ -56,7 +56,7 @@ const JobBoardComponent = ({ job:
                     <span className="text-gray-700 ">{personnel}</span>
                 </h2>
 
-                <h1 className="flex flex-wrap ml-auto push items-end mt-4 mr-4 mx-0 pt-4 border-t border-gray-500 border-solid sm:ml-auto sm:border-0 sm:pt-0 sm:mt-0 sm:justify-center">
+                <h1 className="flex flex-wrap ml-auto push items-end mt-2 mr-4 mx-0 pt-4 border-t border-gray-500 border-solid sm:ml-auto sm:border-0 sm:pt-0 sm:mt-0 sm:justify-center">
                     {tags ? tags.map((tag) => (
                         <span
                             onClick={() => handletagClick(tag)}

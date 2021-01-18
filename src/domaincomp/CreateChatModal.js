@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState} from 'react';
 import "./modal.css";
 import DatePicker from 'react-datepicker';
-import { Row, Col, Button, ButtonGroup } from 'react-bootstrap';
+import { Row, Col, Button } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import ReactDatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -29,7 +29,6 @@ var Locat = {
 // const Modal = (props) => {
 export default function CreateChat({ open, close, header, func, myId }) {
 
-    // const { open, close, header, func } = props;
     const [title, setTitle] = useState("");
     const [subtitle, setSubtitle] = useState("");
     const [members, setMembers] = useState("");
@@ -116,8 +115,6 @@ export default function CreateChat({ open, close, header, func, myId }) {
         NewChat.endDate = moment(endDate).format('YYYY-MM-DD');
         NewChat.location = sido + "  " + gungu + "  " + dong;
         console.log(Date.now());
-
-
 
         fetch("http://192.249.18.236:3001/makeroom", {
             method: 'POST',

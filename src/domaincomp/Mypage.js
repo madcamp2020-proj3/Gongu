@@ -60,10 +60,8 @@ export default function Mypage({ close, userid, roominfo, idinfo }) {
             <button className="close" onClick={close}> &times; </button> </Modal.Header>
 
             <Modal.Body>
-                <Form>{idinfo.map(el => 
-                    <div className="flex mb-2 shadow-sm items-center pl-3 p-2 font-bold">{el}
-                    <Button onClick={handleclick, handleEntrance({el})} className="ml-auto push" variant="outline-primary">바로가기</Button></div>)}
-                    
+                <Form className="flex flex-col">{idinfo.map(el => 
+                    <span onClick={() => handleEntrance({el})} className="cursor-pointer mb-2 shadow-sm items-center pl-3 p-2 font-bold">{el}</span>)}
                 </Form>
             </Modal.Body>
         </>
