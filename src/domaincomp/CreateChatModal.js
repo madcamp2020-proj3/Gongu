@@ -93,7 +93,6 @@ export default function CreateChat({ open, close, header, func, myId }) {
         options = type.map((el) => <option key={el} value={el} onChange={({ target: { value } }) => setGungu(value)}>{el}</option>);
     }
 
-
     const onCheckboxBtnClick = (selected) => {
         const index = cSelected.indexOf(selected);
         if (index < 0) {
@@ -102,32 +101,6 @@ export default function CreateChat({ open, close, header, func, myId }) {
             cSelected.splice(index, 1);
         }
         setCSelected([...cSelected]);
-    }
-
-    function _handleReaderLoaded (readerEvt) {
-        let binaryString = readerEvt;
-        setImage({
-            base64TextString : btoa(binaryString)
-        })
-    }
-    
-    function handleimage(e){
-        let file = e.target.files[0];
-        
-        let reader = new FileReader();
-        reader.onloadend = () => {
-            const base64 = reader.result;
-            if (base64) {
-                setImgBase64(base64.toString());
-            }
-        }
-        if (file) {
-            reader.readAsDataURL(file);
-            setImage(file);
-        }
-
-        console.log(file)
-        
     }
 
     function clickhandler(e) {
@@ -154,29 +127,6 @@ export default function CreateChat({ open, close, header, func, myId }) {
                 func();
             });
         }
-
-        // function encodeImageFileAsURL() {
-        //     console.log(fileReader);
-        //     var filesSelected = document.getElementById("inputFileToLoad").files;
-        //     if (filesSelected.length > 0) {
-        //     var fileToLoad = filesSelected[0];
-
-        //     var fileReader = new FileReader();
-
-        //     fileReader.onload = function(fileLoadedEvent) {
-        //         var srcData = fileLoadedEvent.target.result; // <--- data: base64
-
-        //         var newImage = document.createElement('img');
-        //         newImage.src = srcData;
-
-        //         document.getElementById("imgTest").innerHTML = newImage.outerHTML;
-        //         alert("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
-        //         console.log("Converted Base64 version is " + document.getElementById("imgTest").innerHTML);
-        //     }
-        //     fileReader.readAsDataURL(fileToLoad);
-        //     }
-        //     console.log(fileReader);
-        // }
 
         const getBase64 = (file) => new Promise(function (resolve, reject) {
             let reader = new FileReader();
@@ -213,16 +163,10 @@ export default function CreateChat({ open, close, header, func, myId }) {
                                 <label>제목:</label>
                                 <input type="text" class="form-control" name="title" value={title} onChange={({ target: { value } }) => setTitle(value)}></input>
                             </div>
-                            {/* accept="image/jpg,impge/png,image/jpeg,image/gif" */}
+
                             <div class="form-group">
                                 <label>사진:</label>
-                                {/* <input id="inputFileToLoad" type="file" onchange={handleimage} />
-                                    <div id="imgTest"></div>
-                                    <script type='text/javascript'>
-                                    </script> */}
-                                {/* <div style={{"backgroundColor": "#efefef", "width":"150px", "height" : "150px"}}></div>
-                                <div> */
-                                <input type="file" accept=".jpg, .png, .jpeg, .gif" name="image" id="image" onChange={_changeImg}></input>}
+                                <input type="file" accept=".jpg, .png, .jpeg, .gif" name="image" id="image" onChange={_changeImg}></input>
                             </div>
 
                             <div class="form-group">

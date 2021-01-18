@@ -1,9 +1,9 @@
 import React from 'react';
-import { Modal, Form } from 'react-bootstrap';
+import { Modal, Form, Row, Col } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
+import {star} from 'react-icons/fa';
 
-
-export default function Mypage({ close, userid, roominfo, idinfo }) {
+export default function Mypage({ close, userid, roominfo, idinfo, ownerinfo }) {
     const history = useHistory();
 
     function goToRoom(roomId) {
@@ -26,7 +26,7 @@ export default function Mypage({ close, userid, roominfo, idinfo }) {
             );
     }
 
-    var idx = -2; var id = -2;
+    var idx = -2; var id = -2; var idd = -2;
     function handleEntrance(el) {
 
         if (Array.isArray(roominfo)) {
@@ -39,6 +39,17 @@ export default function Mypage({ close, userid, roominfo, idinfo }) {
         }
     }
 
+    function checkowner(el) {
+        if (Array.isArray(roominfo)) {
+            idd = roominfo.indexOf(el.el);
+
+            if (Array.isArray(ownerinfo)) {
+                if (ownerinfo[idd] == userid) {return "#ebeef5"}
+                else return "#FFFFFFFF";
+            }
+        }
+    }
+
     return (
         <>
             <Modal.Header style={{ backgroundColor: "#f4f5f9" }}>현재 참여 중인 채팅방
@@ -46,7 +57,11 @@ export default function Mypage({ close, userid, roominfo, idinfo }) {
 
             <Modal.Body>
                 <Form className="flex flex-col">{roominfo.map(el =>
-                    <span onClick={() => handleEntrance({ el })} className="cursor-pointer mb-2 shadow-sm items-center pl-3 p-2 font-bold">{el}</span>)}
+                    <div style={{backgroundColor: checkowner({el})}} onClick={() => handleEntrance({ el })} className="cursor-pointer mb-2 shadow-sm items-center pl-3 p-2 font-bold">
+                        <Row>
+                            <Col>{el}</Col>
+                            {/* <Col>{checkowner({el})}</Col> */}
+                        </Row></div>)}
                 </Form>
             </Modal.Body>
         </>

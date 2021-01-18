@@ -1,5 +1,12 @@
 import React from 'react';
 
+function setlogo(id, logo){
+    if (logo === null){
+    return "images/icons8-hippo-96.svg"
+    }
+    else return logo;
+}
+
 const JobBoardComponent = ({ job:
     { id, logo, title, startDate, endDate, subtitle, location, category, members, personnel },
     handletagClick, goToRoom, key, isNew
@@ -18,13 +25,12 @@ const JobBoardComponent = ({ job:
     return (
         <div className={`flex flex-col bg-white shadow-md my-16 mx-10 p-6 rounded ${isNew && 'border-l-4 border-indigo-200 border-solid'} sm:flex-row sm:my-8`}>
             <div className="flex sm:flex-col justify-between">
-                <img
-                    className="-mt-16 mb-4 w-20 h-20 sm:h-24 sm:w-24 sm:my-0"
-                    src={logo == null ? "/images/shortly.svg" : logo}
+                <img className="-mt-16 mb-4 w-24 h-24 sm:h-24 sm:w-24 sm:my-0"
+                    src={setlogo(id, logo)}
                     alt=""
-                />
+                    style={{borderRadius: "50%", backgroundColor:"#b1bade"}}></img>
                 <button onClick={handleEntrance}
-                    className="-mt-1 bg-indigo-100 text-indigo-600 px-4 sm:px-2 sm:py-1 font-bold text-lg border rounded border-solid border-indigo-700 sm:my-0">
+                    className="-mt-1 bg-indigo-100 text-indigo-600 px-4 sm:px-2 sm:py-1 font-bold text-lg border rounded border-solid border-indigo-700 sm:my-0 ">
                     입장
             </button>
             </div>

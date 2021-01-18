@@ -14,6 +14,7 @@ export default function Domain({ setLogin, userId }) {
     const [modalOpen, setModalOpen] = useState(false);
     const [room, setRoom] = useState([]);
     const [id, setId] = useState([]);
+    const [owner, setOwner] = useState([]);
     const { backupHistory } = useConversations();
 
     const closempModal = () => {
@@ -45,6 +46,7 @@ export default function Domain({ setLogin, userId }) {
                 var validRoom = res.filter(selectroom);
                 setRoom(validRoom.map((el) => el['title']));
                 setId(validRoom.map((el) => el.id));
+                setOwner(validRoom.map(el => el.owner));
             })
             .then(setMypageOpen(true));
     }
@@ -140,8 +142,8 @@ export default function Domain({ setLogin, userId }) {
         <>
             <header className="mb-8 p-16 bg-white">
                 <Row>
-                    <div className="text-6xl ml-16 font-sans font-bold" style={{ color: "#0080ff" }}>Sy</div>
-                    <div className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>no</div>
+                    <div className="text-6xl ml-16 font-sans font-bold" style={{ color: "#0080ff" }}>하마</div>
+                    <div className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>하마</div>
 
                     <Col>
                         <div className="flex flex-col flex-wrap items-end ml-auto push group">
@@ -153,7 +155,7 @@ export default function Domain({ setLogin, userId }) {
                                 <button onClick={handleLogout} className="text-lg text-white float-right font-bold py-2 px-3 border border-solid border-indigo-500 rounded w-28" style={{ backgroundColor: "#0080ff" }}>Logout</button>
                                 <button onClick={handlemypage} className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>Mypage</button>
                                 <Modal show={mypageOpen} onHide={closempModal}>
-                                    <Mypage close={closempModal} roominfo={room} userid={userId} idinfo={id} />
+                                    <Mypage close={closempModal} roominfo={room} userid={userId} idinfo={id} ownerinfo={owner} />
                                 </Modal>
 
                             </h0>
