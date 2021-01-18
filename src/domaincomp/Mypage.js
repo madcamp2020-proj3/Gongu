@@ -1,5 +1,5 @@
-import React, { useState, useRef } from 'react';
-import { Modal, Form, Button, Row, Col } from 'react-bootstrap';
+import React from 'react';
+import { Modal, Form } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 
 
@@ -26,41 +26,25 @@ export default function Mypage({ close, userid, roominfo, idinfo }) {
 
             );
     }
-    function handleclick(e){
-        e.preventDefault();
-        e.stopPropagation();
-    }
+
+    var idx = -2; var id = -2;
     function handleEntrance(el) {
-        // e.preventDefault();
-        console.log("클릭하였습니다.");
-        console.log(el);
 
-        goToRoom(el.el);}
+        if(Array.isArray(roominfo)){
+        idx = roominfo.indexOf(el.el);
+
+        if(Array.isArray(idinfo)){
+        id = idinfo[idx];
+        goToRoom(id);}}
+        }
     
-    var idx = 0; var id =0;
-    // function handleEntrance(el) {
-    //     // e.preventDefault();
-    //     console.log("클릭하였습니다.");
-    //     console.log(el);
-
-    //     const findin = (element) => element == el;
-
-    //     if(Array.isArray(roominfo)){
-    //     idx = roominfo.indexOf(el);
-    //     console.log(idx+"1");
-    //     if(Array.isArray(idinfo)){
-    //         console.log(idinfo);
-    //     // id = idinfo.get(idx);}
-    //     console.log(idx);
-    //     goToRoom(id);}}
-    // }
     return (
         <>
             <Modal.Header style={{backgroundColor: "#f4f5f9"}}>현재 참여 중인 채팅방
             <button className="close" onClick={close}> &times; </button> </Modal.Header>
 
             <Modal.Body>
-                <Form className="flex flex-col">{idinfo.map(el => 
+                <Form className="flex flex-col">{roominfo.map(el => 
                     <span onClick={() => handleEntrance({el})} className="cursor-pointer mb-2 shadow-sm items-center pl-3 p-2 font-bold">{el}</span>)}
                 </Form>
             </Modal.Body>

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Button, lightColors, darkColors } from 'react-floating-action-button';
+import { Container, Button, } from 'react-floating-action-button';
 import JobBoardComponent from './JobBoardComponent';
 import { FaPlus } from 'react-icons/fa';
 import Modal2 from './CreateChatModal';
 import { Row, Col, Modal } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Mypage from './Mypage';
+import moment from 'moment';
 
 export default function Domain({ setLogin, userId }) {
     const [mypageOpen, setMypageOpen] = useState(false);
@@ -105,6 +106,7 @@ export default function Domain({ setLogin, userId }) {
     }
 
     const filteredJobs = jobs.filter(filterFunc);
+    const filteredJobs2 = filteredJobs.reverse();
 
     function handleLogout(e) {
         e.preventDefault();
@@ -130,6 +132,11 @@ export default function Domain({ setLogin, userId }) {
             .catch(
 
             );
+    }
+
+    function checkNew(date) {
+        var now = moment().utcOffset('+09:00').format('YYYY-MM-DD');
+        return (date == now);
     }
 
     return (
@@ -179,12 +186,14 @@ export default function Domain({ setLogin, userId }) {
                     jobs.length === 0 ? (
                         <p>Jobs are fetching...</p>
                     ) : (
-                            filteredJobs.map(job => (
+                            
+                            filteredJobs2.map(job => (
                                 <JobBoardComponent
                                     job={job}
                                     key={job.id}
                                     handletagClick={handletagClick}
-                                    goToRoom={goToRoom} />
+                                    goToRoom={goToRoom}
+                                    isNew={checkNew(job.startDate)} />
                             ))
                         )
                 }

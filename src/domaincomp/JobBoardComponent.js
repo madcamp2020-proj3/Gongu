@@ -1,8 +1,8 @@
 import React from 'react';
 
 const JobBoardComponent = ({ job:
-    { id, logo, isNew, title, startDate, endDate, subtitle, location, category, members, personnel },
-    handletagClick, goToRoom, key
+    { id, logo, title, startDate, endDate, subtitle, location, category, members, personnel },
+    handletagClick, goToRoom, key, isNew
 }) => {
     const tags = [];
 
