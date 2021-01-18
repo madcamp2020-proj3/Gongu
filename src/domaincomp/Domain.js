@@ -19,29 +19,30 @@ export default function Domain({ setLogin, userId }) {
 
     const checkUser = (element) => element === userId;
 
-    function checkid(arr){
-        if (Array.isArray(arr)){
-        if (arr.findIndex(checkUser) === -1) return false;
-        else return true;}
+    function checkid(arr) {
+        if (Array.isArray(arr)) {
+            if (arr.findIndex(checkUser) === -1) return false;
+            else return true;
+        }
         else return false;
     }
 
-    function selectroom(item){
-        if(checkid(item.recipients)) return true;
+    function selectroom(item) {
+        if (checkid(item.recipients)) return true;
         else return false;
     }
 
     function handlemypage(e) {
         e.preventDefault();
         e.stopPropagation();
-        fetch('http://192.249.18.236:3001/mypage'             
+        fetch('http://192.249.18.236:3001/mypage'
         )
             .then(res => res.json())
             .then(res => {
                 console.log(res.length);
                 var validRoom = res.filter(selectroom);
-                setRoom(validRoom.map((el) => el['title'])) ;
-                setId(validRoom.map((el) => el['id']));  
+                setRoom(validRoom.map((el) => el['title']));
+                setId(validRoom.map((el) => el['id']));
             })
             .then(setMypageOpen(true));
     }
@@ -142,11 +143,11 @@ export default function Domain({ setLogin, userId }) {
 
                             <h0>
                                 <button onClick={handleLogout} className="text-lg text-white float-right font-bold py-2 px-3 border border-solid border-indigo-500 rounded w-28" style={{ backgroundColor: "#0080ff" }}>Logout</button>
-                                <button onClick={handlemypage } className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>Mypage</button>
+                                <button onClick={handlemypage} className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>Mypage</button>
                                 <Modal show={mypageOpen} onHide={closempModal}>
-                                    <Mypage close={closempModal} roominfo={room} userid={userId} idinfo={id}/>
+                                    <Mypage close={closempModal} roominfo={room} userid={userId} idinfo={id} />
                                 </Modal>
-                                
+
                             </h0>
                         </div>
                     </Col>
@@ -188,7 +189,7 @@ export default function Domain({ setLogin, userId }) {
 
                     <Container>
                         <button onClick={() => handleClick, openModal} style={{ backgroundColor: "#0080ff" }} className="text-white rounded-full p-6 text-lg shadow-lg"> <FaPlus /></button>
-                        <Modal2 open={modalOpen} close={closeModal} func={modalClose} header="새로운 채팅방 만들기" >
+                        <Modal2 open={modalOpen} close={closeModal} func={modalClose} header="새로운 채팅방 만들기" myId={userId}>
                         </Modal2>
 
                     </Container>
