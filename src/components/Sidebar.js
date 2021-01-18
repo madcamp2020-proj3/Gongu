@@ -57,12 +57,12 @@ export default function Sidebar({ id }) {
     return (
         <div style={{ width: '250px' }} className="d-flex flex-column">
             <Form>
-                <Button onClick={() => handleDelete()} variant="danger" className="rounded-0 w-1/2">
+                <Button onClick={() => handleExit()} variant="danger" className="rounded-0 w-1/2">
                     Exit
-                            </Button>
-                <Button onClick={() => handleExit()} variant="secondary" className="rounded-0 w-1/2">
+                </Button>
+                <Button onClick={() => handleDelete()} variant="secondary" className="rounded-0 w-1/2">
                     Delete
-                    </Button>
+                </Button>
             </Form>
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant="tabs" className='text-center'>

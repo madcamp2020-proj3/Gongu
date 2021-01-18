@@ -28,11 +28,6 @@ function App() {
   };
 
   return (
-    // <>
-    //   {/* {login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : dashboard(id)} */}
-    //   {!login ? <Loginpage onIdSubmit={setId} onLoginAdmit={setLogin} /> : <Domain setLogin={setLogin} />}
-    // </>
-    // <Route path='/' render={props => <Test />} />
     <BrowserRouter>
       <Route path='/' exact render={
         props => {
