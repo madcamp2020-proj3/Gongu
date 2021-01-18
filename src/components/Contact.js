@@ -1,17 +1,20 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
 import { useContacts } from '../contexts/ContactsProvider';
+import { sampleText } from './sampleText';
+import marked from 'marked'
 
 export default function Contact() {
     const { contacts } = useContacts();
 
     return (
-        <ListGroup variant="flush">
-            {contacts.map(contact => (
-                <ListGroup.Item key={contact.id}>
-                    {contact.name}
-                </ListGroup.Item>
-            ))}
-        </ListGroup>
+        <div className='container'>
+            <div className='row'>
+                <div className='col-sm-6'>
+                    <textarea className='form-control' rows='35' />
+                </div>
+                <div className='col-sm-6'>
+                </div>
+            </div>
+        </div>
     )
 }
