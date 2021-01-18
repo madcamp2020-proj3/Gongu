@@ -47,8 +47,10 @@ export function ConversationsProvider({ id, children }) {
     }, [socket, addMessageToConversation]);
 
     function sendMessage(recipients, text) {
-        socket.emit('send-message', { recipients, text });
-        addMessageToConversation({ recipients, text, sender: id })
+        const parseData = path.split('/')[path.split('/').length - 1]
+        console.log(parseData);
+        socket.emit('send-message', { recipients, text, parseData });
+        addMessageToConversation({ recipients, text, sender: id });
     }
 
     const formattedConversations = conversations.map((conversation, index) => {
