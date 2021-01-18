@@ -12,6 +12,8 @@ export default function OpenConversation({ myId }) {
         }
     }, []);
 
+    console.log(selectedConversation);
+    console.log("채팅창이 그려진다.");
     function handleSubmit(e) {
         e.preventDefault();
         fetch('http://192.249.18.236:3001' + path)

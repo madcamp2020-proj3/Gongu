@@ -31,11 +31,11 @@ export function ConversationsProvider({ id, children }) {
         return fetch("http://192.249.18.236:3001/backup/" + roomId)
             .then(res => res.json())
             .then(result => {
-                setConversations(prevConversations => {
+                return setConversations(prevConversations => {
                     if (prevConversations.length != 0) {
-                        console.log(recipients, result);
-                        return [{ recipients, messages: [] }];
+                        return [{ recipients, messages: result }];
                     } else {
+                        console.log(recipients, result);
                         return [{ recipients, messages: result }];
                     }
                 });
@@ -69,6 +69,8 @@ export function ConversationsProvider({ id, children }) {
     }
 
     const formattedConversations = conversations.map((conversation, index) => {
+        console.log(conversations);
+        console.log("채팅 포맷팅");
         const recipients = conversation.recipients.map(recipient => {
             const contact = contacts.find(contact => {
                 return contact.id === recipient;
