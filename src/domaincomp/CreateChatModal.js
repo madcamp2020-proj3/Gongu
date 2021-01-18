@@ -156,7 +156,7 @@ export default function CreateChat({ open, close, header, func, myId }) {
 
                             <div class="form-group">
                                 <label>사진:</label>
-                                <input type="file" name="image" value={image} onChange={({ target: { value } }) => setImage(value)}></input>
+                                <input type="file" accept="image/jpg,impge/png,image/jpeg,image/gif"  name="image" value={image} onChange={({ target: { value } }) => setImage(value)}></input>
                             </div>
 
                             <div class="form-group">
@@ -229,6 +229,7 @@ export default function CreateChat({ open, close, header, func, myId }) {
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("남성패션/잡화")} active={cSelected.includes("남성패션/잡화")}># 남성패션/잡화</Button>
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("게임/취미")} active={cSelected.includes("게임/취미")}># 게임/취미</Button>
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("뷰티/미용")} active={cSelected.includes("뷰티/미용")}># 뷰티/미용</Button>
+                                <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("반려동물")} active={cSelected.includes("반려동물")}># 반려동물</Button>
                                 <Button className="m-1" variant="outline-primary" onClick={() => onCheckboxBtnClick("도서/티켓/음반")} active={cSelected.includes("도서/티켓/음반")}># 도서/티켓/음반</Button>
                             </div><div class="form-group">
                                 <Button className="m-1" variant="outline-success" onClick={() => onCheckboxBtnClick("상시모집")} active={cSelected.includes("상시모집")}># 상시모집</Button>

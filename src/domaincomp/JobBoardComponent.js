@@ -36,7 +36,7 @@ const JobBoardComponent = ({ job:
                     {location}
                     {isNew && (
                         <span className="bg-indigo-500 text-indigo-100 font-bold m-2 py-1 px-2 rounded-full uppercase text-sm">
-                            New
+                            Now
                         </span>
                     )}
                 </h3>
