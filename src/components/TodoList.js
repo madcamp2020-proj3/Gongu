@@ -39,11 +39,18 @@ function TodoList() {
         })
         setTodos(updatedTodos);
     }
+    
+    const randomcolor = () => {
+        let id = Math.floor(Math.random()*10000)%3 ;
+        if (id===0) {console.log("1"); return "#ff7eb9"}
+        else if (id===1) {console.log("2"); return "#7afcff"}
+        else if (id===2) {console.log("3"); return "#fff740"}
+    }
 
     return(
         <div>
             <TodoForm onSubmit={addTodo}/>
-            <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo}/>
+            <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo} color={randomcolor}/>
         </div>
     )
 }

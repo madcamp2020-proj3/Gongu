@@ -6,6 +6,7 @@ import NewConversationModal from './NewConversationModal'
 import NewMemoModal from './NewMemoModal'
 import { useHistory } from 'react-router-dom';
 import { useConversations } from '../contexts/ConversationsProvider';
+import './scroll.css'
 
 
 const CONVERSATION_KEY = "conversation";
@@ -68,7 +69,7 @@ export default function Sidebar({ id }) {
 
 
     return (
-        <div style={{ width: '250px' }} className="d-flex flex-column">
+        <div style={{ width: '280px'}} className="d-flex flex-column">
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant="tabs" className='text-center'>
                     <Nav.Item className='w-1/2'>
@@ -80,7 +81,7 @@ export default function Sidebar({ id }) {
                 </Nav>
                 <Tab.Content className="border-right overflow-auto flex-grow-1 bg-white">
                     <Tab.Pane eventKey={CONTRACT_KEY}>
-                        <Memo room={roominfo} />
+                        <Memo  room={roominfo} />
                     </Tab.Pane>
                     <Tab.Pane eventKey={CONVERSATION_KEY}>
                         <Conversation />

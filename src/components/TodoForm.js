@@ -9,26 +9,30 @@ function TodoForm(props) {
 
     useEffect(() => {
         inputRef.current.focus()
-    })
+    },[])
 
     const handleChange = e => {
         setInput(e.target.value);
     }
+
+    const colors = ['#ffbedc', "#bcfdff", "#fffb9f" ]
 
     const handleSubmit = e => {
         e.preventDefault();
 
         props.onSubmit({
             id: Math.floor(Math.random()*10000),
-            text: input
+            text: input,
+            color: colors[Math.floor(Math.random()*10000)%3]
         });
+
         setInput('');
     };
 
     return(
-        <form className="todo-form" onSubmit={handleSubmit}>
-            <input type="text" placeholder="메모를 입력하세요" value={input} name="text" className="todo-input w-48" onChange={handleChange} ref={inputRef}></input>
-            <button className="todo-button w-5">+</button>
+        <form className="todo-form flex" onSubmit={handleSubmit}>
+            <input type="text" placeholder="메모를 입력하세요" value={input} name="text" className="todo-input w-56 border rounded" onChange={handleChange} ref={inputRef}></input>
+            <button className="todo-button w-5 ml-auto push mr-1 px-2">+</button>
             
         </form>
     )
