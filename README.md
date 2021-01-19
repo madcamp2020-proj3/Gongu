@@ -24,7 +24,29 @@
 
 ## Demo
 
+* 로그인
 
+![](https://raw.githubusercontent.com/madcamp2020-proj3/Syno_front/master/demo/login.gif)
+
+회원가입 버튼을 클릭하게되면 모달창이 열리고 기본 데이터를 입력하면 회원가입이 종료된다. 회원가입의 경우는 단순히 비밀번호와 비밀번호 재확인으로 이뤄진다. 회원가입이 완료되면 관련된 정보가 DB로 저장된다.
+
+* 방만들기
+
+![](https://raw.githubusercontent.com/madcamp2020-proj3/Syno_front/master/demo/make.gif)
+
+방 정보의 경우도 마찬가지로 모달창이 열리고 관련된 데이터를 적는 것으로 완료된다. 사진 업로드와 미리보기가 가능하며 달력을 통해서 채팅방의 지속시간을 설정할 수 있다.
+
+* 채팅
+
+![](https://raw.githubusercontent.com/madcamp2020-proj3/Syno_front/master/demo/chat.gif)
+
+실시간 채팅의 경우는 채팅방에 들어갈 경우 채팅 백업 데이터를 불러와 화면에 그려준다. 이후 소켓 통신을 통해서 양방향으로 전달이 가능하다.
+
+* 바로가기
+
+![](https://raw.githubusercontent.com/madcamp2020-proj3/Syno_front/master/demo/goto.gif)
+
+바로가기 기능은 메인 화면에서 자신이 참여한 정보를 확인할 수 있으며, 회색빛으로 칠해진 부분이 자신이 속한 대화방 중에 자신이 방장으로 있는 채팅방이다. 클릭을 하며 해당 채팅방으로 이동이 된다.
 
 ## Functions
 
@@ -70,10 +92,3 @@
 이번 프로젝트에서 처음 리액트를 접하면서 동시에 웹과 앱을 디자인 한다는 것이 어떤 개념인지를 접하게 되었다. 단순히 css코드를 이용해서 화면이 줄어드는 포인트에 대한 css를 따로 설정하는 과정이었지만 이를 통해서 웹을 통해서 앱에서도 가시성있는 화면을 만든다는 것이 어떤 의미인지 알 수 있었다. 기능적인 측면(센서 및 thread 사용 등)에서는 과연 리액트가 어느정도까지 안드로이드 언어(java, kotlin)를 대체할 수 있는지 알 수 없지만 디자인이나 화면 구성에서의 만큼에서는 앱과 화면 모두 사용자에게 훌륭한 UI를 제공할 수 있을 것이라는 생각을 하게 되었다.
 
 ## Reference
-
-
-
-
-
-
-
