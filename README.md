@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# CS496 Week3 Report
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+개발자: 우혜인(@woohyein), 조재구(@Jaegoomon)
 
-## Available Scripts
+## Abstraction
 
-In the project directory, you can run:
+"하마하마"는 공동구매를 위한 웹사이트 애플리케이션으로 공동구매를 위한 전용 채팅방을 만들 수 있는 기능을 제공한다. 이번 프로젝트 동안 구현한 기능의 경우는 다음과 같이 요약할 수 있다.
 
-### `npm start`
+1. 로그인 기능/ 회원가입 기능
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+로그인의 경우는 서버에 있는 데이터 베이스 정보와 단순 비교를 통해서 메인 페이지로의 이동을 허용/ 제한 할 수 있다. 회원가입의 경우는 아이디, 비밀번호 그리고 비밀번호 재확인 항목을 통해서 완료할 경우 데이터 베이스에 새로운 로그인 정보가 저장된다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. 채팅방 생성
 
-### `npm test`
+`+` 표시 버튼을 누르게되면 채팅 방에 필요한 정보를 입력한 후에 관련 데이터를 DB에 저장하게 된다. 이때 만든 인원은 채팅방의 주인이 되며, 이후 채팅방의 삭제 권한을 가지게 된다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. 실시간 채팅 및 채팅 데이터 백업
 
-### `npm run build`
+채팅방을 만들게 되면 채팅방 안에서 소켓통신을 이용해서 채팅을 한다. 채팅 기능은 실시간으로 실행되며, 채팅방을 나갔다 들어올 때, DB에 저장된 채팅 데이터가 자동으로 백업되어 이전에 기록했던 채팅방 내용을 볼 수 있다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. 채팅방 내의 공유 메모장
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+채팅방의 사이드바에서 지원하는 기능으로 채팅을 통해서 정해진 내용이나 주요 정보를 채팅방 좌측 사이드 바의 메모장을 이용해서 기록할 수 있다. 마찬가지로 기록된 메모는 DB에 자동으로 저장되며 구성원 모두가 볼 수 있다. 단, 새로 고침을 통해서 갱신이 된다는 단점이 있다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Demo
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Functions
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+프로젝트를 진행하면서 사용했던 두 언어르 바탕으로 서술하였다.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### React.js 
 
-## Learn More
+![](https://reactjs.org/logo-og.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+이번 프론트 엔드의 경우 react.js를 이용하였다. 반응형 웹과 컴포넌트 단위로 화면 구성을 할 수 있다는 특징으로 잘 알려진 react의 기능을 사용하면서 느꼈던 장점과 단점은 다음과 같이 정리해 보았다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* 장점
+  * 다양한 패키지로 지원해주는 감각적인 디자인: 리액트를 사용하면서 가장 좋았던 부분 중 하나는 바로 리액트에서 패키지로 지원해주는 다양한 기능의 구성요소(Button, Modal, ...) 들을 [친절한 참고자료](https://react-bootstrap.github.io/)와 함께 쉽게 사용할 수 있다느 것이다.
+  * Hook의 다양한 기능: 이전 프로젝트에서 안드로이드를 개발하면서 느꼈던 난해했던 점이 바로 데이터가 변하였을 때, 이를 인지하고 화면을 업데이트 해야 했던 것이다. 하지만 리액트의 가장 기본이 되는 개념인 `state`, `props`가 변화 하였을 때, 렌더링이 된다는 것을 Hook과 활용하면 특별한 함수 없이 화면을 업데이트 시켜줄 수 있었다. 
+* 단점(힘들었던 점)
+  * 서버 통신과 비동기 : 서버 부분에서도 다룰 내용이긴 하지만, 항상 많은 생각과 시간을 쏟는 부분이 바로 이 비동기 처리 부분이다. 이전 Week2 보다는 `Promise`와 `aync/await`의 개념이 익숙해 져서 간단한 비동기 처리는 쉽게 해결하였지만 서버와 통신을 통해 데이터를 받아오고 이 데이터를 바탕으로 렌더링을 해야하는 상황에서 직면하는 비동기 문제가 가장 많은 시간을 쏟은 부분이다. 
+  * Hook과 Life-cycle의 난해함: Hook과 Life-cycle은 분명 매우 좋은 기능이며 웹, 앱을 제작하는데 있어 이런 수명과 같은 부분은 화면을 나타내는 가장 기본적인 요소이다. 하지만, 1주일이란 짧은 기간동안 이러한 개념을 모두 숙지하고, 실제 앱에 적용하기란 매우 난해한 부분이 많았다. 의도하지 않은 렌더링이 실시된다 거나, 실시되지 않는 등의 통제하지 못하는 다양한 케이스가 발생하였다. 가장 핵심이 되는 기능이지만 실제로 이를 완전히 이해하고 적용하기란 더 많은 시간의 공부량이 필요하다는 생각을 하였다.
 
-### Code Splitting
+#### Node.js
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![](https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png)
 
-### Analyzing the Bundle Size
+2주차에 이어서 사용한 Node.js와 MongoDB를 통해 이번 프로젝트의 백엔드를 구성하였다. 채팅 웹 애플리케이션을 만들면서 가장 느꼈던 이슈들을 중심으로 서술하도록 하겠다. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* 비동기 처리: 비동기 처리는 리액트 부분에서 설명하였듯이, 이번 프로젝트에서 가장 중점이 되었던 이슈이다. 특히 MongoDB와 연결을 하고 데이터를 받아와 추가 데이터를 처리하는 동안 비동기 처리를 못하여 연결이 끊어지는 등의 에러가 발생하였다. `Promise`를 활용하여 연속적으로 `then()`을 사용함으로써 발생했던 문제의 대부분을 해결하였다. 하지만 이 과정에서 코드 길이가 길어지면 읽기가 어려워 지는 등의 문제가 발생하였다. `async/await`을 통해서 동기적인 방향으로 코드를 작성하는 방법이 필요하다는 생각을 하였다.
+* 파일정리: 서버의 코드가 길어짐에 따라 다양한 종류의 서버사이드를 만들게 되었는데 이 과정에서 코드 수정하거나 찾는 과정에서 힘든점이 있었다. 서버사이드를 만들면서 느꼈던 부분은 서로 매우 비슷한 특징의 서버 사이드를 묶어서 `import` 방식으로 이를 이용한다면 한층 보기 편한 코드가 되지 않을까하는 생각이 들었다.
+* CORS 에러(SOP): 
+* 동시성 처리: 
 
-### Making a Progressive Web App
+## Discussion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Reference
