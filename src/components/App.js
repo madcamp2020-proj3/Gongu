@@ -18,22 +18,18 @@ function App() {
   const dashboard = (id) => {
     return (
       <SocketProvider id={id}>
-        <ContactsProvider>
-          <ConversationsProvider id={id}>
-            <Dashboard id={id} />
-          </ConversationsProvider>
-        </ContactsProvider>
+        <ConversationsProvider id={id}>
+          <Dashboard id={id} />
+        </ConversationsProvider>
       </SocketProvider>
     );
   }
 
   const doaminboard = (id) => {
     return (
-      <ContactsProvider>
-        <ConversationsProvider id={id}>
-          <Domain setLogin={setLogin} userId={id} />
-        </ConversationsProvider>
-      </ContactsProvider>
+      <ConversationsProvider id={id}>
+        <Domain setLogin={setLogin} userId={id} />
+      </ConversationsProvider>
     );
   }
 

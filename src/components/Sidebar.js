@@ -26,7 +26,6 @@ export default function Sidebar({ id }) {
             .then(result => {
                 const idx = result.recipients.indexOf(id);
                 result.recipients.splice(idx, 1);
-                // createConversation(result.recipients);
                 backupHistory(parseData, result.recipients);
             });
     }, []);
