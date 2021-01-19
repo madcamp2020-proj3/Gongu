@@ -141,7 +141,7 @@ export default function Domain({ setLogin, userId }) {
 
     return (
         <>
-            <header className="mb-8 p-16 bg-white">
+            <header className="mb-8 p-10 sm:p-16 bg-white">
                 <Row>
                     <span id="title">
                         <span className="text-6xl pl-4 sm:ml-16 sm:pl-0 py-3" style={{ color: "#0080ff" }}>하마하마</span>
@@ -168,7 +168,7 @@ export default function Domain({ setLogin, userId }) {
 
             </header>
 
-            <div className="container">
+            <div className="container ">
                 {filters.length > 0 && (
                     <div className={`flex bg-white shdow-md -my-16 mb-20 mx-10 p-6 rounded z-1 relative border border-indigo-200 items-center`}>
                         {filters.map((filter) => (
@@ -183,7 +183,7 @@ export default function Domain({ setLogin, userId }) {
                     </div>
                 )}
 
-                {
+                { 
                     jobs.length === 0 ? (
                         <p>Jobs are fetching...</p>
                     ) : (
