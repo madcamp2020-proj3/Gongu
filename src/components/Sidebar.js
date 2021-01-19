@@ -7,6 +7,7 @@ import NewMemoModal from './NewMemoModal'
 import { useHistory } from 'react-router-dom';
 import { useConversations } from '../contexts/ConversationsProvider';
 import './scroll.css'
+// import SideNav from './sidenav'
 
 
 const CONVERSATION_KEY = "conversation";
@@ -21,6 +22,19 @@ export default function Sidebar({ id }) {
     const history = useHistory();
     const { createConversation, backupHistory } = useConversations()
     const [roominfo, setRoominfo] = useState([]);
+    const [sideMenu, setSideMenu] = useState(null);
+
+    const showSideMenu = () => {
+        setSideMenu(!sideMenu);
+        document.body.style.overflow = "hidden";
+    };
+
+    const hideSideMenu = (props) => {
+        setSideMenu(false);
+        document.body.style.overflow  = "unset";
+    }
+
+
 
     useEffect(() => {
         fetch('http://192.249.18.236:3001' + path)
@@ -67,9 +81,10 @@ export default function Sidebar({ id }) {
             });
     }
 
-
     return (
-        <div style={{ width: '280px'}} className="d-flex flex-column">
+        <>
+        
+        <div  className="d-flex flex-column w-2/5 sm:w-1/5">
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant="tabs" className='text-center'>
                     <Nav.Item className='w-1/2'>
@@ -110,5 +125,6 @@ export default function Sidebar({ id }) {
                 }
             </Modal>
         </div>
+        </>
     )
 }
