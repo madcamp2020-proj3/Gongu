@@ -125,6 +125,17 @@ export default function CreateChat({ open, close, header, func, myId }) {
         })
             .then(res => {
                 console.log("방이 만들어졌습니다.");
+                setTitle('');
+                setSubtitle('');
+                setImage(null);
+                setMembers(0);
+                setStartDate("");
+                setEndDate("");
+                setSido("");
+                setGungu("");
+                setDong("");
+                setCSelected([]);
+                setPreview("");
                 func();
             });
     }
