@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Tab, Nav, Button, Modal, Form } from 'react-bootstrap';
 import Conversation from './Conversation';
-import Contract from './Contact';
+import Memo from './Memo';
 import NewConversationModal from './NewConversationModal'
-import NewContractModal from './NewContactModal'
+import NewMemoModal from './NewMemoModal'
 import { useHistory } from 'react-router-dom';
 import { useConversations } from '../contexts/ConversationsProvider';
 
@@ -19,6 +19,7 @@ export default function Sidebar({ id }) {
     const parseData = path.split('/')[path.split('/').length - 1];
     const history = useHistory();
     const { createConversation, backupHistory } = useConversations()
+    const [roominfo, setRoominfo] = useState([]);
 
     useEffect(() => {
         fetch('http://192.249.18.236:3001' + path)
@@ -27,6 +28,8 @@ export default function Sidebar({ id }) {
                 const idx = result.recipients.indexOf(id);
                 result.recipients.splice(idx, 1);
                 backupHistory(parseData, result.recipients);
+                setRoominfo(result);
+                console.log("받아온 정보: ", result);
             });
     }, []);
 
@@ -89,7 +92,7 @@ export default function Sidebar({ id }) {
                         <Conversation />
                     </Tab.Pane>
                     <Tab.Pane eventKey={CONTRACT_KEY}>
-                        <Contract />
+                        <Memo room={roominfo}/>
                     </Tab.Pane>
                 </Tab.Content>
                 {/* {
@@ -101,14 +104,14 @@ export default function Sidebar({ id }) {
                     Your Id: <span className="text-muted">{id}</span>
                 </div>
                 <Button onClick={() => setModalOpen(true)} className="rounded-0">
-                    New {conversationOpen ? "Conversation" : "Contact"}
+                    {conversationOpen ? "New Conversation" : "Create Memo"}
                 </Button>
             </Tab.Container>
 
             <Modal show={modalOpen} onHide={closeModal}>
                 {conversationOpen ?
                     <NewConversationModal closeModal={closeModal} myId={id} /> :
-                    <NewContractModal closeModal={closeModal} />
+                    <NewMemoModal closeModal={closeModal}  />
                 }
             </Modal>
         </div>
