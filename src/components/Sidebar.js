@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Tab, Nav, Button, Modal, Form } from 'react-bootstrap';
 import Conversation from './Conversation';
-import Contract from './Contact';
+import Contract from './Memo';
 import NewConversationModal from './NewConversationModal'
-import NewContractModal from './NewContactModal'
+import NewMemoModal from './NewMemoModal'
 import { useHistory } from 'react-router-dom';
 import { useConversations } from '../contexts/ConversationsProvider';
 
@@ -91,14 +91,14 @@ export default function Sidebar({ id }) {
                     Your Id: <span className="text-muted">{id}</span>
                 </div>
                 <Button onClick={() => setModalOpen(true)} className="rounded-0">
-                    New {conversationOpen ? "Conversation" : "Contact"}
+                    {conversationOpen ? "New Conversation" : "Create Memo"}
                 </Button>
             </Tab.Container>
 
             <Modal show={modalOpen} onHide={closeModal}>
                 {conversationOpen ?
                     <NewConversationModal closeModal={closeModal} myId={id} /> :
-                    <NewContractModal closeModal={closeModal} />
+                    <NewMemoModal closeModal={closeModal} />
                 }
             </Modal>
         </div>

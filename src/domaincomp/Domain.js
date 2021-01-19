@@ -142,8 +142,10 @@ export default function Domain({ setLogin, userId }) {
         <>
             <header className="mb-8 p-16 bg-white">
                 <Row>
-                    <div className="text-6xl ml-16 font-sans font-bold" style={{ color: "#0080ff" }}>하마</div>
-                    <div className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>하마</div>
+                    <div className="text-6xl ml-16 font-sans font-bold" style={{ color: "#0080ff" }}>하</div>
+                    <div className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>마</div>
+                    <div className="text-6xl font-sans font-bold" style={{ color: "#0080ff" }}>하</div>
+                    <div className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>마</div>
 
                     <Col>
                         <div className="flex flex-col flex-wrap items-end ml-auto push group">
