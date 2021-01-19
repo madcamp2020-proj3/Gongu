@@ -18,13 +18,13 @@ export default function Contact({ room }) {
         <div className='container float-none'>
             <div className="pb-2 border-b border-gray-300">
                 <div className='flex flex-col flex-wrap content-center'>
-                    <div className="mt-2 font-bold text-xl self-center ">{room['title']}</div>
+                    <div className="mt-2 font-bold text-xl self-center text-center">{room['title']}</div>
                     <img className="mt-3 mb-3 w-24 h-24 self-center"
                         src={setlogo(loogo)}
                         alt=""
                         style={{borderRadius: "50%", backgroundColor:"#b1bade"}}></img>
                     <div className="self-center mb-2 text-lg">{room['subtitle']}</div>
-                    <div>{room['startDate']} ~ {room['endDate']}</div>
+                    <div className="self-center">{room['startDate']} ~ {room['endDate']}</div>
                     <div className="self-center mb-2">{room['location']}</div>
                 </div>
 
@@ -36,7 +36,8 @@ export default function Contact({ room }) {
                 </div>
             </div>
             <div className="mt-3">
-            <TodoList /></div>
+
+            <TodoList existMemo={room['memo']}/></div>
            
         </div>
     )

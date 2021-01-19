@@ -1,9 +1,19 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import TodoForm from './TodoForm'
 import Todo from './Todo'
 
-function TodoList() {
+function TodoList({existMemo}) {
     const [todos, setTodos] = useState([]);
+    const path = window.location.pathname;
+    const parseData = path.split('/')[path.split('/').length - 1];
+    // console.log("exist", existMemo);
+    // const inputRef = useRef(null)
+
+    useEffect(() => {
+        if (existMemo !== undefined){
+            setTodos(existMemo.reverse())
+        }
+    },[existMemo])
 
     const addTodo = todo => {
         if(!todo.text || /^\s*$/.test(todo.text)) {
@@ -11,23 +21,50 @@ function TodoList() {
         }
 
         const newTodos = [todo, ...todos]
-
         setTodos(newTodos)
+
+        fetch('http://192.249.18.236:3001/addmemo/'+parseData, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(todo)
+        })
+        .then(res => {
+            console.log(res)
+        })        
     };
 
     const updateTodo = (todoId, newValue) => {
         if(!newValue.text || /^\s*$/.test(newValue.text)) {
             return;
         }
+        const editArr = todos.map(item => (item.id === todoId ? newValue : item))
+        // setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
+        setTodos(editArr)
 
-        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
-
-    }
+        fetch('http://192.249.18.236:3001/delmemo/'+parseData, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(editArr.slice().reverse())
+        })
+        .then(res => {
+            console.log(res)
+        })        
+    };
+    
 
     const removeTodo = id => {
-        const removeArr = [...todos].filter(todo => todo.id !== id)
-
+        console.log("tds", todos);
+        const removeArr = todos.filter(todo => todo.id !== id)
         setTodos(removeArr);
+        console.log("rma", removeArr);
+        fetch('http://192.249.18.236:3001/delmemo/'+parseData, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(removeArr.slice().reverse())
+        })
+        .then(res => {
+            console.log(res)
+        })        
     };
 
     const completeTodo = id => {
@@ -40,17 +77,10 @@ function TodoList() {
         setTodos(updatedTodos);
     }
     
-    const randomcolor = () => {
-        let id = Math.floor(Math.random()*10000)%3 ;
-        if (id===0) {console.log("1"); return "#ff7eb9"}
-        else if (id===1) {console.log("2"); return "#7afcff"}
-        else if (id===2) {console.log("3"); return "#fff740"}
-    }
-
     return(
         <div>
             <TodoForm onSubmit={addTodo}/>
-            <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo} color={randomcolor}/>
+            <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo}/>
         </div>
     )
 }

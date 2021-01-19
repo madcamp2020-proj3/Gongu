@@ -27,6 +27,8 @@ function TodoForm(props) {
         });
 
         setInput('');
+
+       
     };
 
     return(
