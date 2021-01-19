@@ -224,7 +224,7 @@ export default function CreateChat({ open, close, header, func, myId }) {
 
                             <div class="form-group" required>
                                 <label>지역:</label>
-                                <Row>
+                                <Row className="items-center align-center">
                                     <Col>
                                         <select onChange={changeSelectOptionHandler}>{area0.map(fbb => <option key={fbb} value={fbb}>{fbb}</option>)}</select>
                                     </Col>

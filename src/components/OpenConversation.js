@@ -41,10 +41,10 @@ export default function OpenConversation({ myId }) {
                                         ref={lastMessage ? setRef : null}
                                         key={index}
                                         className={`my-1 d-flex flex-column ${message.fromMe ? 'align-self-end aligb-items-end' : 'align-items-start'}`}>
-                                        <div className="d-flex items-center">
+                                        <div className="d-flex items-end">
                                             {message.fromMe ?
                                                 <span className="inline-block text-gray-600 text-xs px-1">
-                                                    11:23
+                                                    {message.time}
                                                 </span> :
                                                 <></>
                                             }
@@ -54,7 +54,7 @@ export default function OpenConversation({ myId }) {
                                             </div>
                                             {!message.fromMe ?
                                                 <span className="inline-block text-gray-600 text-xs px-1">
-                                                    11:23
+                                                    {message.time}
                                                 </span> :
                                                 <></>
                                             }

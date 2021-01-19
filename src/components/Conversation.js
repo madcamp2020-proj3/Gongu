@@ -10,8 +10,11 @@ export default function Conversation() {
             { conversations.length != 0
                 ? (
                     conversations[0].recipients.map(e => (
-                        <ListGroup.Item>
+                        <ListGroup.Item className="d-flex">
                             {e.id}
+                            <span>
+                                하하
+                            </span>
                         </ListGroup.Item>
                     ))
                 )

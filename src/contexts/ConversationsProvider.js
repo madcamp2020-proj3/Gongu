@@ -52,9 +52,9 @@ export function ConversationsProvider({ id, children }) {
             });
     }, []);
 
-    const addMessageToConversation = useCallback(({ text, sender }) => {
+    const addMessageToConversation = useCallback(({ time, text, sender }) => {
         setConversations(prevConversations => {
-            const newMessage = { sender, text };
+            const newMessage = { time, sender, text };
             const newConversations = prevConversations.map
                 (conversation => {
                     return {
@@ -74,15 +74,15 @@ export function ConversationsProvider({ id, children }) {
 
 
     function sendMessage(recipients, text) {
+        var d = new Date();
+        var time = d.getHours() + ":" + d.getMinutes();
         const parseData = path.split('/')[path.split('/').length - 1]
-        socket.emit('send-message', { recipients, text, parseData });
-        addMessageToConversation({ recipients, text, sender: id });
+        socket.emit('send-message', { recipients, text, parseData, time });
+        addMessageToConversation({ time, text, sender: id });
     }
 
     const formattedConversations = (words) => {
         return words.map(conversation => {
-            console.log("채팅 보맷팅 전: ", conversations);
-            console.log("채팅 포맷팅");
             const recipients = conversation.recipients.map(recipient => {
                 return { id: recipient };
             });
@@ -91,6 +91,7 @@ export function ConversationsProvider({ id, children }) {
                 const fromMe = id === m.sender;
                 return { ...m, fromMe };
             });
+
             return { ...conversation, messages, recipients };
         });
     }
