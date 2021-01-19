@@ -1,5 +1,6 @@
 import React from 'react';
 import Hippo from './icons8-hippo-96.svg'
+import TodoList from './TodoList'
 
 function setlogo(logo){
     if (logo === null){
@@ -34,13 +35,9 @@ export default function Contact({ room }) {
                     : ("")}
                 </div>
             </div>
-            {/* <div className='row'>
-                <div className='ml-3 mt-1'>
-                    <textarea className='form-control' rows='35' />
-                </div>
-                <div className='col-sm-6'>
-                </div>
-            </div> */}
+            <div className="mt-3">
+            <TodoList /></div>
+           
         </div>
     )
 }

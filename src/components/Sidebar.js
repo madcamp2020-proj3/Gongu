@@ -102,15 +102,20 @@ export default function Sidebar({ id }) {
                 <div className="p-2 border-top border-right small bg-white">
                     Your Id: <span className="text-muted">{id}</span>
                 </div>
-                <Button onClick={() => setModalOpen(true)} className="rounded-0">
-                    {conversationOpen ? "New Conversation" : "Create Memo"}
-                </Button>
+
+                {
+                    conversationOpen ? <Button onClick={() => setModalOpen(true)} className="rounded-0">New conversation</Button> : null
+                }
+                {/* // <Button onClick={() => setModalOpen(true)} className="rounded-0">
+                //     {conversationOpen ? "New Conversation" : "Create Memo"}
+                // </Button> */}
             </Tab.Container>
 
             <Modal show={modalOpen} onHide={closeModal}>
                 {conversationOpen ?
                     <NewConversationModal closeModal={closeModal} myId={id} /> :
-                    <NewMemoModal closeModal={closeModal}  />
+                    // <NewMemoModal closeModal={closeModal}  />
+                    null
                 }
             </Modal>
         </div>
