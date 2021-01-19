@@ -130,7 +130,7 @@ export default function Domain({ setLogin, userId }) {
                     console.log("이동");
                     history.push('/chatroom/' + roomId);
                 }
-            })
+            });
     }
 
     function checkNew(date) {

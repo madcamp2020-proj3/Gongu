@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage';
-import { useContacts } from './ContactsProvider';
 import { useSocket } from './SocketProvider';
 
 const ConversationsContext = React.createContext();
@@ -11,9 +10,8 @@ export function useConversations() {
 
 export function ConversationsProvider({ id, children }) {
     const path = window.location.pathname;
+    const parseData = path.split('/')[path.split('/').length - 1];
     const [conversations, setConversations] = useLocalStorage('conversations' + path, []);
-    const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
-    const { contacts } = useContacts();
     const socket = useSocket();
 
     function createConversation(recipients) {
@@ -44,7 +42,17 @@ export function ConversationsProvider({ id, children }) {
             });
     }
 
-    const addMessageToConversation = useCallback(({ recipients, text, sender }) => {
+    useEffect(() => {
+        fetch('http://192.249.18.236:3001' + path)
+            .then(res => res.json())
+            .then(result => {
+                const idx = result.recipients.indexOf(id);
+                result.recipients.splice(idx, 1);
+                backupHistory(parseData, result.recipients);
+            });
+    }, []);
+
+    const addMessageToConversation = useCallback(({ text, sender }) => {
         setConversations(prevConversations => {
             const newMessage = { sender, text };
             const newConversations = prevConversations.map
@@ -64,39 +72,35 @@ export function ConversationsProvider({ id, children }) {
         return () => socket.off('receive-message');
     }, [socket, addMessageToConversation]);
 
+
     function sendMessage(recipients, text) {
         const parseData = path.split('/')[path.split('/').length - 1]
         socket.emit('send-message', { recipients, text, parseData });
         addMessageToConversation({ recipients, text, sender: id });
     }
 
-    const formattedConversations = conversations.map((conversation, index) => {
-        console.log("채팅 보맷팅 전: ", conversations);
-        console.log("채팅 포맷팅");
-        const recipients = conversation.recipients.map(recipient => {
-            const contact = contacts.find(contact => {
-                return contact.id === recipient;
+    const formattedConversations = (words) => {
+        return words.map(conversation => {
+            console.log("채팅 보맷팅 전: ", conversations);
+            console.log("채팅 포맷팅");
+            const recipients = conversation.recipients.map(recipient => {
+                return { id: recipient };
             });
-            const name = (contact && contact.name) || recipient;
-            return { id: recipient, name };
-        });
 
-        const messages = conversation.messages.map(m => {
-            const fromMe = id === m.sender;
-            return { ...m, fromMe };
+            const messages = conversation.messages.map(m => {
+                const fromMe = id === m.sender;
+                return { ...m, fromMe };
+            });
+            return { ...conversation, messages, recipients };
         });
-
-        const selected = index === selectedConversationIndex;
-        return { ...conversation, messages, recipients, selected };
-    });
+    }
 
     const value = {
-        conversations: formattedConversations,
-        selectedConversation: formattedConversations[selectedConversationIndex],
+        conversations: formattedConversations(conversations),
         sendMessage,
-        selectConversationIndex: setSelectedConversationIndex,
         createConversation,
-        backupHistory
+        backupHistory,
+        setConversations
     }
 
     return (

@@ -3,7 +3,8 @@ import { ListGroup } from 'react-bootstrap';
 import { useConversations } from '../contexts/ConversationsProvider';
 
 export default function Conversation() {
-    const { conversations, selectConversationIndex } = useConversations();
+    const { conversations } = useConversations();
+    console.log("conversation.js ", conversations);
     return (
         <ListGroup variant="flush">
             { conversations.length != 0
