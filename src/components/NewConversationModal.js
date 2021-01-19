@@ -21,9 +21,10 @@ export default function NewconversationModal({ closeModal, myId, handleExit, han
     }
 
     return (
-        <div className="bg-current">
-            <Button variant="secondary" size="lg" block onClick={handleExit}>Exit</Button>
-            <Button variant="danger" size="lg" block onClick={handleDelete}>Delete</Button>
+        <div id="title3" className="bg-current">
+            <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"></link>
+            <Button variant="secondary" size="lg" block onClick={handleExit}>방 나가기</Button>
+            <Button variant="danger" size="lg" block onClick={handleDelete}>방 삭제하기</Button>
         </div>
     );
 }

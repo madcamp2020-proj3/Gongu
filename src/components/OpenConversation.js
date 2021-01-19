@@ -77,7 +77,7 @@ export default function OpenConversation({ myId }) {
                             value={text}
                             onChange={e => setText(e.target.value)} />
                         <InputGroup.Append>
-                            <Button type="submit">Send</Button>
+                            <Button type="submit">보내기</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </Form.Group>

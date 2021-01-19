@@ -34,7 +34,7 @@ export default function Signup({ closeModal }) {
             })
     }
     return (
-        <>
+        <div id="title5">
             <Modal.Header closeButton>회원 가입</Modal.Header>
             {
                 show ?
@@ -60,6 +60,6 @@ export default function Signup({ closeModal }) {
                     <Button onClick={handleOnClick}>가입하기</Button>
                 </Form>
             </Modal.Body>
-        </>
+        </div>
     )
 }

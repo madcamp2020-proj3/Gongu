@@ -154,8 +154,8 @@ export default function Domain({ setLogin, userId }) {
                             </h1>
 
                             <h0>
-                                <button onClick={handleLogout} className="text-lg text-white float-right font-bold py-2 px-3 border border-solid border-indigo-500 rounded w-28" style={{ backgroundColor: "#0080ff" }}>Logout</button>
-                                <button onClick={handlemypage} className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>Mypage</button>
+                                <button onClick={handleLogout} className="text-lg text-white float-right font-bold py-2 px-3 border border-solid border-indigo-500 rounded w-28" style={{ backgroundColor: "#0080ff" }}>로그아웃</button>
+                                <button onClick={handlemypage} className="text-lg text-white font-bold py-2 px-3 border border-solid border-indigo-500 rounded float-right mr-2 w-28" style={{ backgroundColor: "#0080ff" }}>내 채팅방</button>
                                 <Modal show={mypageOpen} onHide={closempModal}>
                                     <Mypage close={closempModal} roominfo={room} userid={userId} idinfo={id} ownerinfo={owner} />
                                 </Modal>

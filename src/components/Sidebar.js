@@ -73,10 +73,10 @@ export default function Sidebar({ id }) {
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant="tabs" className='text-center'>
                     <Nav.Item className='w-1/2'>
-                        <Nav.Link eventKey={CONTRACT_KEY}>Information</Nav.Link>
+                        <Nav.Link eventKey={CONTRACT_KEY}>방 정보</Nav.Link>
                     </Nav.Item>
                     <Nav.Item className='w-1/2'>
-                        <Nav.Link eventKey={CONVERSATION_KEY}>Conversation</Nav.Link>
+                        <Nav.Link eventKey={CONVERSATION_KEY}>참여자</Nav.Link>
                     </Nav.Item>
                 </Nav>
                 <Tab.Content className="border-right overflow-auto flex-grow-1 bg-white">
@@ -92,12 +92,12 @@ export default function Sidebar({ id }) {
                         ? <></>
                         :
                 } */}
-                <div className="p-2 border-top border-right small bg-white">
-                    Your Id: <span className="text-muted">{id}</span>
+                <div className="p-2 border-top border-right bg-white text-lg">
+                    내 정보: <span className="text-muted">{id}</span>
                 </div>
                 {
                     !conversationOpen ? <Button onClick={() => setModalOpen(true)} className="rounded-0">
-                        Setting
+                        설정
                 </Button> : null
                 }
 

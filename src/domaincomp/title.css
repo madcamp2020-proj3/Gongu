@@ -12,10 +12,29 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: "NanumSquare";
+  src: url("https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 #title {
   font-family: "Recipekorea";
 }
 
 #title2 {
   font-family: "Recipekorea";
+}
+
+#title3 {
+  font-family: "NanumSquare";
+}
+
+#title4 {
+  font-family: "NanumSquare";
+}
+
+#title5 {
+  font-family: "NanumSquare";
 }

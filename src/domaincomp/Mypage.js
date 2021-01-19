@@ -51,7 +51,7 @@ export default function Mypage({ close, userid, roominfo, idinfo, ownerinfo }) {
     }
 
     return (
-        <>
+        <div id="title4">
             <Modal.Header style={{ backgroundColor: "#f4f5f9" }}>현재 참여 중인 채팅방
             <button className="close" onClick={close}> &times; </button> </Modal.Header>
 
@@ -64,6 +64,6 @@ export default function Mypage({ close, userid, roominfo, idinfo, ownerinfo }) {
                         </Row></div>)}
                 </Form>
             </Modal.Body>
-        </>
+        </div>
     )
 }

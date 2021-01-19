@@ -62,27 +62,25 @@ export default function Loginpage({ onIdSubmit, onLoginAdmit }) {
                     <></>
             }
 
-            <div className="mt-56 space-y-20 font-mono" style={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
-                <Row id="title2">
-                <span className="text-6xl" style={{ color: "#0080ff" }}>하마하마</span>
-
-                    {/* <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
-                    <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div> */}
-                </Row>
+            <div id="title2" className=" font-mono flex flex-col" style={{ justifyContent: "center", alignItems: "center"}}>
+                <span className="mt-56 space-y-20 text-6xl" style={{ color: "#0080ff" }}>하마하마</span>
+            </div>
+            <div className="font-mono flex flex-col -mt-6" style={{ justifyContent: "center", alignItems: "center"}}>
+                <span id="title5" className="text-base text-gray-500 pl-40 ">@재구 혜인</span>
             </div>
 
             <Container className="align-items-center d-flex" style={{ height: '40vh' }}>
                 <Form className="w-100">
                     <Form.Group>
-                        <Form.Label> Enter Your Id</Form.Label>
+                        <Form.Label> 아이디를 입력하세요.</Form.Label>
                         <Form.Control type="text" ref={idRef} required></Form.Control>
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label> Enter Your Password</Form.Label>
+                        <Form.Label> 비밀번호를 입력하세요.</Form.Label>
                         <Form.Control type="password" ref={pwRef} required></Form.Control>
                     </Form.Group>
-                    <Button onClick={handleOnClick} className="mr-2">Login</Button>
-                    <Button onClick={() => setSignupModalOpen(true)} variant="secondary">Create A New ID</Button>
+                    <Button onClick={handleOnClick} className="mr-2">로그인</Button>
+                    <Button onClick={() => setSignupModalOpen(true)} variant="secondary">회원가입</Button>
                 </Form>
             </Container>
             <Modal show={signupModalOpen} onHide={closeSignupModal}>
