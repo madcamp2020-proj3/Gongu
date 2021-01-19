@@ -49,6 +49,16 @@ export default function Sidebar({ id }) {
             .then(result => {
                 if (result.token) {
                     console.log("삭제되었습니다.");
+                    fetch("http://192.249.18.236:3001/history" + '/' + parseData)
+                        .then(res => res.json())
+                        .then(result => {
+                            if (result.token) {
+                                console.log("삭제되었습니다.");
+                                history.goBack();
+                            } else {
+                                console.log("삭제 권한이 없습니다.");
+                            }
+                        });
                     history.goBack();
                 } else {
                     console.log("삭제 권한이 없습니다.");

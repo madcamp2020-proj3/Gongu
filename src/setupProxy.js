@@ -46,4 +46,9 @@ module.exports = function (app) {
             target: 'http://192.249.18.236:3001/'
         })
     );
+    app.use(
+        proxy('/history/:roomId', {
+            target: 'http://192.249.18.236:3001/'
+        })
+    );
 }
