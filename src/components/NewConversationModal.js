@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, Form, Button } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 import { useConversations } from '../contexts/ConversationsProvider';
 
 
-export default function NewconversationModal({ closeModal, myId }) {
+export default function NewconversationModal({ closeModal, myId, handleExit, handleDelete }) {
     const { createConversation } = useConversations();
     const path = window.location.pathname;
 
@@ -20,5 +20,10 @@ export default function NewconversationModal({ closeModal, myId }) {
         closeModal();
     }
 
-    return <Button>Create</Button>;
+    return (
+        <div className="bg-current">
+            <Button variant="secondary" size="lg" block onClick={handleExit}>Exit</Button>
+            <Button variant="danger" size="lg" block onClick={handleDelete}>Delete</Button>
+        </div>
+    );
 }

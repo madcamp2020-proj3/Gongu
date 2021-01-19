@@ -41,9 +41,24 @@ export default function OpenConversation({ myId }) {
                                         ref={lastMessage ? setRef : null}
                                         key={index}
                                         className={`my-1 d-flex flex-column ${message.fromMe ? 'align-self-end aligb-items-end' : 'align-items-start'}`}>
-                                        <div
-                                            className={`rounded px-2 py-1 ${message.fromMe ? 'bg-primary text-white' : 'border bg-white'}`}>
-                                            {message.text}
+                                        <div className="d-flex items-center">
+                                            {message.fromMe ?
+                                                <span className="inline-block text-gray-600 text-xs px-1">
+                                                    11:23
+                                                </span> :
+                                                <></>
+                                            }
+                                            <div
+                                                className={`rounded px-2 py-1 ${message.fromMe ? 'bg-primary text-white' : 'border bg-white'}`}>
+                                                {message.text}
+                                            </div>
+                                            {!message.fromMe ?
+                                                <span className="inline-block text-gray-600 text-xs px-1">
+                                                    11:23
+                                                </span> :
+                                                <></>
+                                            }
+
                                         </div>
                                         <div className={`text-muted smamll ${message.fromMe ? 'text-right' : ''}`}>
                                             {message.fromMe ? 'You' : message.sender}

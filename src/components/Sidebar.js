@@ -12,9 +12,9 @@ const CONVERSATION_KEY = "conversation";
 const CONTRACT_KEY = "contracts";
 
 export default function Sidebar({ id }) {
-    const [activeKey, setActiveKey] = useState(CONVERSATION_KEY);
+    const [activeKey, setActiveKey] = useState(CONTRACT_KEY);
     const [modalOpen, setModalOpen] = useState(false);
-    const conversationOpen = activeKey === CONVERSATION_KEY;
+    const conversationOpen = activeKey === CONTRACT_KEY;
     const path = window.location.pathname;
     const parseData = path.split('/')[path.split('/').length - 1];
     const history = useHistory();
@@ -69,29 +69,21 @@ export default function Sidebar({ id }) {
 
     return (
         <div style={{ width: '250px' }} className="d-flex flex-column">
-            <Form>
-                <Button onClick={() => handleExit()} variant="danger" className="rounded-0 w-1/2">
-                    Exit
-                </Button>
-                <Button onClick={() => handleDelete()} variant="secondary" className="rounded-0 w-1/2">
-                    Delete
-                </Button>
-            </Form>
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant="tabs" className='text-center'>
                     <Nav.Item className='w-1/2'>
-                        <Nav.Link eventKey={CONVERSATION_KEY}>Conversation</Nav.Link>
+                        <Nav.Link eventKey={CONTRACT_KEY}>Information</Nav.Link>
                     </Nav.Item>
                     <Nav.Item className='w-1/2'>
-                        <Nav.Link eventKey={CONTRACT_KEY}>Information</Nav.Link>
+                        <Nav.Link eventKey={CONVERSATION_KEY}>Conversation</Nav.Link>
                     </Nav.Item>
                 </Nav>
                 <Tab.Content className="border-right overflow-auto flex-grow-1 bg-white">
+                    <Tab.Pane eventKey={CONTRACT_KEY}>
+                        <Memo room={roominfo} />
+                    </Tab.Pane>
                     <Tab.Pane eventKey={CONVERSATION_KEY}>
                         <Conversation />
-                    </Tab.Pane>
-                    <Tab.Pane eventKey={CONTRACT_KEY}>
-                        <Memo room={roominfo}/>
                     </Tab.Pane>
                 </Tab.Content>
                 {/* {
@@ -103,14 +95,14 @@ export default function Sidebar({ id }) {
                     Your Id: <span className="text-muted">{id}</span>
                 </div>
                 <Button onClick={() => setModalOpen(true)} className="rounded-0">
-                    {conversationOpen ? "New Conversation" : "Create Memo"}
+                    {conversationOpen ? "Create Memo" : "Setting"}
                 </Button>
             </Tab.Container>
 
             <Modal show={modalOpen} onHide={closeModal}>
                 {conversationOpen ?
-                    <NewConversationModal closeModal={closeModal} myId={id} /> :
-                    <NewMemoModal closeModal={closeModal}  />
+                    <NewMemoModal closeModal={closeModal} /> :
+                    <NewConversationModal closeModal={closeModal} myId={id} handleExit={handleExit} handleDelete={handleDelete} />
                 }
             </Modal>
         </div>
