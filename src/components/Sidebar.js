@@ -67,9 +67,9 @@ export default function Sidebar({ id }) {
             });
     }
 
-
+    // style={{ width: '280px'}}
     return (
-        <div style={{ width: '280px'}} className="d-flex flex-column">
+        <div  className="d-flex flex-column w-2/5 sm:w-1/4">
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant="tabs" className='text-center'>
                     <Nav.Item className='w-1/2'>

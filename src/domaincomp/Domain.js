@@ -144,7 +144,7 @@ export default function Domain({ setLogin, userId }) {
             <header className="mb-8 p-16 bg-white">
                 <Row>
                     <span id="title">
-                        <span className="text-6xl ml-16 py-3" style={{ color: "#0080ff" }}>하마하마</span>
+                        <span className="text-6xl pl-4 sm:ml-16 sm:pl-0 py-3" style={{ color: "#0080ff" }}>하마하마</span>
                     </span>
 
                     <Col>

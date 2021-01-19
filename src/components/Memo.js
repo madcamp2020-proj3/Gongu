@@ -23,9 +23,9 @@ export default function Contact({ room }) {
                         src={setlogo(loogo)}
                         alt=""
                         style={{borderRadius: "50%", backgroundColor:"#b1bade"}}></img>
-                    <div className="self-center mb-2 text-lg">{room['subtitle']}</div>
-                    <div className="self-center">{room['startDate']} ~ {room['endDate']}</div>
-                    <div className="self-center mb-2">{room['location']}</div>
+                    <div className="self-center mb-2 text-lg text-center">{room['subtitle']}</div>
+                    <div className="self-center text-center">{room['startDate']} ~ {room['endDate']}</div>
+                    <div className="self-center mb-2 text-center">{room['location']}</div>
                 </div>
 
                 <div className="flex flex-wrap justify-center">
