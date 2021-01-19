@@ -3,6 +3,7 @@ import { Container, Form, Button, Modal, Alert } from 'react-bootstrap'
 import { v4 as uuidV4 } from 'uuid'
 import Signup from './Signup';
 import { Row } from 'react-bootstrap';
+import '../domaincomp/title.css'
 
 
 export default function Loginpage({ onIdSubmit, onLoginAdmit }) {
@@ -62,9 +63,11 @@ export default function Loginpage({ onIdSubmit, onLoginAdmit }) {
             }
 
             <div className="mt-56 space-y-20 font-mono" style={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
-                <Row>
-                    <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
-                    <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div>
+                <Row id="title2">
+                <span className="text-6xl" style={{ color: "#0080ff" }}>하마하마</span>
+
+                    {/* <div className="text-6xl ml-16  font-bold" style={{ color: "#0080ff" }}>Sy</div>
+                    <div className="text-6xl text-white font-bold " style={{ backgroundColor: "#0080ff" }}>no</div> */}
                 </Row>
             </div>
 

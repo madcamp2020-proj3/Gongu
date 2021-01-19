@@ -11,7 +11,7 @@ function TodoList({existMemo}) {
 
     useEffect(() => {
         if (existMemo !== undefined){
-            setTodos(existMemo)
+            setTodos(existMemo.reverse())
         }
     },[existMemo])
 
@@ -37,12 +37,34 @@ function TodoList({existMemo}) {
         if(!newValue.text || /^\s*$/.test(newValue.text)) {
             return;
         }
-        setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
-    }
+        const editArr = todos.map(item => (item.id === todoId ? newValue : item))
+        // setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)))
+        setTodos(editArr)
+
+        fetch('http://192.249.18.236:3001/delmemo/'+parseData, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(editArr.slice().reverse())
+        })
+        .then(res => {
+            console.log(res)
+        })        
+    };
+    
 
     const removeTodo = id => {
-        const removeArr = [...todos].filter(todo => todo.id !== id)
+        console.log("tds", todos);
+        const removeArr = todos.filter(todo => todo.id !== id)
         setTodos(removeArr);
+        console.log("rma", removeArr);
+        fetch('http://192.249.18.236:3001/delmemo/'+parseData, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(removeArr.slice().reverse())
+        })
+        .then(res => {
+            console.log(res)
+        })        
     };
 
     const completeTodo = id => {

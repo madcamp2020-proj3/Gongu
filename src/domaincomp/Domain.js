@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import Mypage from './Mypage';
 import moment from 'moment';
 import { useConversations } from '../contexts/ConversationsProvider';
+import './title.css';
 
 export default function Domain({ setLogin, userId }) {
     const [mypageOpen, setMypageOpen] = useState(false);
@@ -142,16 +143,13 @@ export default function Domain({ setLogin, userId }) {
         <>
             <header className="mb-8 p-16 bg-white">
                 <Row>
-                    <span>
-                        <span className="text-6xl ml-16 font-sans font-bold" style={{ color: "#0080ff" }}>하</span>
-                        <span className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>마</span>
-                        <span className="text-6xl font-sans font-bold" style={{ color: "#0080ff" }}>하</span>
-                        <span className="text-6xl text-white font-bold font-sans" style={{ backgroundColor: "#0080ff" }}>마</span>
+                    <span id="title">
+                        <span className="text-6xl ml-16 py-3" style={{ color: "#0080ff" }}>하마하마</span>
                     </span>
 
                     <Col>
                         <div className="flex flex-col flex-wrap items-end ml-auto push group">
-                            <h1 className="text-lg ">
+                            <h1 className="text-lg pr-1">
                                 {userId} 님 안녕하세요
                             </h1>
 
