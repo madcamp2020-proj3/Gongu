@@ -1,6 +1,6 @@
 import React from 'react';
 
-function setlogo(id, logo){
+function setlogo(logo){
     if (logo === null){
     return "images/icons8-hippo-96.svg"
     }
@@ -26,7 +26,7 @@ const JobBoardComponent = ({ job:
         <div className={`flex flex-col bg-white shadow-md my-16 mx-10 p-6 rounded ${isNew && 'border-l-4 border-indigo-200 border-solid'} sm:flex-row sm:my-8`}>
             <div className="flex sm:flex-col justify-between">
                 <img className="-mt-16 mb-4 w-24 h-24 sm:h-24 sm:w-24 sm:my-0"
-                    src={setlogo(id, logo)}
+                    src={setlogo(logo)}
                     alt=""
                     style={{borderRadius: "50%", backgroundColor:"#b1bade"}}></img>
                 <button onClick={handleEntrance}

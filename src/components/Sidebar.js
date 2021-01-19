@@ -29,7 +29,6 @@ export default function Sidebar({ id }) {
                 result.recipients.splice(idx, 1);
                 backupHistory(parseData, result.recipients);
                 setRoominfo(result);
-                console.log("받아온 정보: ", result);
             });
     }, []);
 
