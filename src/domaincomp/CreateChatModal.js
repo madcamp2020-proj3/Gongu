@@ -18,7 +18,8 @@ var NewChat = {
     category: [],
     startDate: "",
     endDate: "",
-    isNew: false
+    isNew: false,
+    memo: []
 }
 
 var Locat = {
@@ -116,6 +117,7 @@ export default function CreateChat({ open, close, header, func, myId }) {
         NewChat.startDate = moment(startDate).format('YYYY-MM-DD');
         NewChat.endDate = moment(endDate).format('YYYY-MM-DD');
         NewChat.location = sido + "  " + gungu + "  " + dong;
+        NewChat.memo = []
         console.log(Date.now());
 
         fetch("http://192.249.18.236:3001/makeroom", {
