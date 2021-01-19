@@ -43,7 +43,7 @@ export default function OpenConversation({ myId }) {
                                     {message.text}
                                 </div>
                                 <div className={`text-muted smamll ${message.fromMe ? 'text-right' : ''}`}>
-                                    {message.fromMe ? 'You' : message.id}
+                                    {message.fromMe ? 'You' : message.sender}
                                 </div>
                             </div>
                         );
