@@ -40,9 +40,10 @@ export default function CreateChat({ open, close, header, func, myId }) {
     const [sido, setSido] = useState("");
     const [gungu, setGungu] = useState("");
     const [dong, setDong] = useState("");
-    const [imgBase64, setImgBase64] = useState("");
 
-    
+    const [file, setFile] = useState("");
+    const [preview, setPreview] = useState("");
+
     const changeSelectOptionHandler = (event) => {
         setSido(event.target.value);
     }
@@ -126,31 +127,42 @@ export default function CreateChat({ open, close, header, func, myId }) {
                 console.log("방이 만들어졌습니다.");
                 func();
             });
-        }
+    }
 
-        const getBase64 = (file) => new Promise(function (resolve, reject) {
-            let reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result)
-            reader.onerror = (error) => reject('Error: ', error);
-        })
+    const getBase64 = (file) => new Promise(function (resolve, reject) {
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result)
+        reader.onerror = (error) => reject('Error: ', error);
+    })
 
-        const _changeImg = (e) => {
-            const file = e.target.files[0];
-            let encoded;
-            getBase64(file)
-              .then((result) => {
+    const _changeImg = (e) => {
+        handleFileOnChange(e);
+        const file = e.target.files[0];
+        let encoded;
+        getBase64(file)
+            .then((result) => {
                 encoded = result;
                 setImage(encoded);
-               })
-              .catch(e => console.log(e))
+            })
+            .catch(e => console.log(e))
+    }
+
+    const handleFileOnChange = (e) => {
+        e.preventDefault();
+        let reader = new FileReader();
+        let file = e.target.files[0];
+        reader.onloadend = () => {
+            setFile(file);
+            setPreview(reader.result);
         }
+        reader.readAsDataURL(file);
+    }
 
     return (
         <div className={open ? 'openModal modal' : 'modal'} id="myModal">
             { open ? (
                 <section>
-
                     <header>
                         {header}
                         <button className="close" onClick={close}> &times; </button>
@@ -165,6 +177,11 @@ export default function CreateChat({ open, close, header, func, myId }) {
                             </div>
 
                             <div class="form-group">
+                                {
+                                    file !== "" ?
+                                        <img className='profile_preview' src={preview}></img> :
+                                        <></>
+                                }
                                 <label>사진:</label>
                                 <input type="file" accept=".jpg, .png, .jpeg, .gif" name="image" id="image" onChange={_changeImg}></input>
                             </div>
@@ -217,8 +234,7 @@ export default function CreateChat({ open, close, header, func, myId }) {
                                     </Col>
 
                                     <Col>
-                                        <label>상세주소:</label>
-                                        <input type="text" class="form-control" name="dong" value={dong} onChange={({ target: { value } }) => setDong(value)}></input>
+                                        <input type="text" placeholder="상세주소" class="form-control" name="dong" value={dong} onChange={({ target: { value } }) => setDong(value)}></input>
                                     </Col>
                                 </Row>
                             </div>
